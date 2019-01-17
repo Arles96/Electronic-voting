@@ -14,7 +14,8 @@
   },
   "plugins": [
     "import",
-    "meteor"
+    "meteor",
+    "react"
   ],
   "rules": {
     "semi": [2, "always"],
