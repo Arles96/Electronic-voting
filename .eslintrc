@@ -39,6 +39,9 @@
   },
   "globals": {
     "AccountsTemplates": true,
-    "Roles": true
+    "Roles": true,
+    "AutoForm": true,
+    "OT": true,
+    "Highcharts": true
   }
 }
