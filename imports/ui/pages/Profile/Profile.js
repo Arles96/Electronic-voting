@@ -2,6 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Grid, Image } from 'semantic-ui-react';
 
 
 import './Profile.scss';
@@ -24,22 +25,18 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile-page">
-        <h1>Bienvenido</h1>
+       <Grid>
+        <Grid.Column floated='left' width={4}>
+          <Image src='/images/wireframe/paragraph.png' />
+        </Grid.Column>
+        <Grid.Column floated='right' width={8}>
+          <Image src='/images/wireframe/paragraph.png' />
+        </Grid.Column>
+      </Grid>
       </div>
     );
   }
 }
-
-const Grid = () => (
-  <Grid>
-    <Grid.Column floated='left' width={6}>
-      <Image src='/images/wireframe/paragraph.png' />
-    </Grid.Column>
-    <Grid.Column floated='right' width={10}>
-      <Image src='/images/wireframe/paragraph.png' />
-    </Grid.Column>
-  </Grid>
-)
 
 
 Profile.propTypes = {
