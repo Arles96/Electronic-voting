@@ -24,11 +24,23 @@ class Profile extends React.Component {
   render() {
     return (
       <div className="profile-page">
-        <h1>Hola Usuario</h1>
+        <h1>Bienvenido</h1>
       </div>
     );
   }
 }
+
+const Grid = () => (
+  <Grid>
+    <Grid.Column floated='left' width={6}>
+      <Image src='/images/wireframe/paragraph.png' />
+    </Grid.Column>
+    <Grid.Column floated='right' width={10}>
+      <Image src='/images/wireframe/paragraph.png' />
+    </Grid.Column>
+  </Grid>
+)
+
 
 Profile.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
