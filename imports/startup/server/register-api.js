@@ -5,5 +5,6 @@
 
 // users api
 import '../../api/users/publications.js';
+import '../../api/pollings/publications.js';
 
 // import another api
