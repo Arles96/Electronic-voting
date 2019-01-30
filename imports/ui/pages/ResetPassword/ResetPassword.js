@@ -12,8 +12,21 @@ class RecoverPassword extends React.Component {
     this.state = {
       err: ''
     };
-    console.log(this.props);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentWillMount() {
+    if (this.props.loggedIn) {
+      return this.props.history.push('/profile');
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.loggedIn) {
+      nextProps.history.push('/profile');
+      return false;
+    }
+    return true;
   }
 
   handleSubmit (e) {
@@ -21,7 +34,8 @@ class RecoverPassword extends React.Component {
     const password = e.target.password.value;
     const passwordAgain = e.target.passwordAgain.value;
     if (password === passwordAgain) {
-      Accounts.resetPassword('', password, (err) => {
+      const { token } = this.props.match.params;
+      Accounts.resetPassword(token, password, (err) => {
         if (err) {
           this.setState({ err: err.reason });
         }
@@ -33,10 +47,10 @@ class RecoverPassword extends React.Component {
 
   render () {
     return (
-      <div className="recover-password-page">
+      <div id="reset-password-page">
         <NavBar />
           <Container>
-            <Header textAlign="center" className="header-rpwd" >
+            <Header textAlign="center" className="header-reset" >
               Recuperar contraseña
             </Header>
             <Form onSubmit={this.handleSubmit} >
@@ -49,7 +63,7 @@ class RecoverPassword extends React.Component {
                 <input type="password" name="passwordAgain" />
               </Form.Field>
               <Form.Field className="text-center" >
-                <Button className="btn-recover" inverted color="green" >Enviar</Button>
+                <Button className="btn-reset" inverted color="green" >Enviar</Button>
               </Form.Field>
             </Form>
           </Container>

@@ -15,6 +15,20 @@ class RecoverPassword extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentWillMount() {
+    if (this.props.loggedIn) {
+      return this.props.history.push('/profile');
+    }
+  }
+
+  shouldComponentUpdate(nextProps) {
+    if (nextProps.loggedIn) {
+      nextProps.history.push('/profile');
+      return false;
+    }
+    return true;
+  }
+
   handleSubmit (e) {
     const email = e.target.email.value;
     Accounts.forgotPassword({ email }, (err) => {
