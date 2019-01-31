@@ -40,7 +40,7 @@ class NavBar extends Component {
                   as={Link}
                   to='/login'
                   active={activeItem === 'messages'}
-                  onClick={this.handleItemClick} 
+                  onClick={this.handleItemClick}
                   inverted={!fixed}
                   >
                     Log in
@@ -51,8 +51,8 @@ class NavBar extends Component {
                     name='Registrarse'
                     active={activeItem === 'friends'}
                     onClick={this.handleItemClick}
-                    inverted={!fixed} 
-                    primary={fixed} 
+                    inverted={!fixed}
+                    primary={fixed}
                     style={{ marginLeft: '0.5em' }}
                   >
                     Sign Up
@@ -61,7 +61,7 @@ class NavBar extends Component {
               </Container>
             </Menu>
       </div>
-      
+
     )
   }
 }
