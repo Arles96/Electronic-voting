@@ -10,6 +10,7 @@ import Landing from '../../ui/pages/Landing';
 import Login from '../../ui/pages/Login';
 import Signup from '../../ui/pages/Signup';
 import Profile from '../../ui/pages/Profile';
+import Polling from '../../ui/pages/Polling';
 import NotFound from '../../ui/pages/Not-Found';
 import RecoverPassword from '../../ui/pages/RecoverPassword';
 import ResetPassword from '../../ui/pages/ResetPassword';
@@ -28,6 +29,7 @@ const App = props => (
         <PropsRoute exact path="/" component={Landing} {...props} />
         <PropsRoute path="/login" component={Login} {...props} />
         <PropsRoute path="/signup" component={Signup} {...props} />
+        <PropsRoute path="/pollings" component={Polling} {...props} />
         <PropsRoute exact path="/profile" component={Profile} {...props} />
         <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
         <PropsRoute

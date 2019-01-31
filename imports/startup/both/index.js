@@ -4,3 +4,5 @@
 // import counter collection and common methods
 import '../../api/users/methods';
 
+// Voting collection
+import '../../api/pollings/methods';
