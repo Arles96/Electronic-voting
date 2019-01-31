@@ -35,6 +35,7 @@ const App = props => (
         <PropsRoute exact path="/profile" component={Profile} {...props} />
         <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
         <PropsRoute
+          exact
           path="/recover-password"
           component={RecoverPassword}
           {...props}

@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
+    "dev": "meteor --settings settings.json",
     "test": "npm run test-server && npm run test-client",
     "test-server": "TEST_CLIENT=0 SERVER_TEST_REPORTER=\"list\" meteor test --once --driver-package meteortesting:mocha --port 3100",
     "test-client": "NODE_ENV=UNIT_TESTING jest",
