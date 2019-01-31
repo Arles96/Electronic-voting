@@ -2,6 +2,3 @@
 // e.g. useraccounts configuration file.
 
 // import counter collection and common methods
-import '../../api/users/methods';
-
-
