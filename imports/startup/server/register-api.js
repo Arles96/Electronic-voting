@@ -5,5 +5,7 @@
 
 // users api
 import '../../api/users/publications.js';
+import '../../api/elections/methods';
+import '../../api/votingforms/methods';
 
 // import another api

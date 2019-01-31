@@ -34,6 +34,20 @@ class NavBar extends Component {
             active={activeItem === 'friends'}
             onClick={this.handleItemClick}
           />
+          <Menu.Item
+            as={Link}
+            to='/elections'
+            name='Elecciones'
+            active={activeItem === 'friends'}
+            onClick={this.handleItemClick}
+          />
+          <Menu.Item
+            as={Link}
+            to='/votingforms'
+            name='Planillas'
+            active={activeItem === 'friends'}
+            onClick={this.handleItemClick}
+          />
         </Menu>
       </div>
     )

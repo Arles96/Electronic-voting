@@ -10,6 +10,7 @@ import Landing from '../../ui/pages/Landing';
 import Login from '../../ui/pages/Login';
 import Signup from '../../ui/pages/Signup';
 import Profile from '../../ui/pages/Profile';
+import addElections from '../../ui/pages/elections/addElections';
 import NotFound from '../../ui/pages/Not-Found';
 import RecoverPassword from '../../ui/pages/RecoverPassword';
 import ResetPassword from '../../ui/pages/ResetPassword';
@@ -19,6 +20,7 @@ import Spinner from '../../ui/components/Spinner';
 
 // import hoc to pass additional props to routes
 import PropsRoute from '../../ui/pages/PropsRoute';
+import addVotingForms from '../../ui/pages/votingForms/addVotingForms';
 
 const App = props => (
   <Router>
@@ -28,6 +30,8 @@ const App = props => (
         <PropsRoute exact path="/" component={Landing} {...props} />
         <PropsRoute path="/login" component={Login} {...props} />
         <PropsRoute path="/signup" component={Signup} {...props} />
+        <PropsRoute path="/elections" component={addElections} {...props} />
+        <PropsRoute path="/votingforms" component={addVotingForms} {...props} />
         <PropsRoute exact path="/profile" component={Profile} {...props} />
         <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
         <PropsRoute
