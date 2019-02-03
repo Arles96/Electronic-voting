@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Grid, Image, Card, Icon, Feed, Icon} from 'semantic-ui-react';
+import { Grid, Image, Card, Icon, Feed} from 'semantic-ui-react';
 
 
 import './Profile.scss';
@@ -58,13 +58,16 @@ class Profile extends React.Component {
                   </Card.Meta>
                   <Card.Description>Matthew is a musician living in Seattle.</Card.Description>
                     <div>
-                     <Icon name='briefcase' size='tiny' /> <h1> "Carrera"  </h1>
+                     <Icon name='briefcase' size='large' /> <p1> "Carrera"  </p1>
                    </div>
                    <div>
-                     <Icon name='envelope' size='tiny' /> <h1> "Correo"  </h1>
+                     <Icon name='home' size='large' /> <p1> "Lugar"  </p1>
                    </div>
                    <div>
-                     <Icon name='mobile alternate' size='tiny' /> <h1> "Celular"  </h1>
+                     <Icon name='envelope' size='large' /> <p1> "Correo"  </p1>
+                   </div>
+                   <div>
+                     <Icon name='mobile alternate' size='large' /> <p1> "Celular"  </p1>
                    </div>
                 </Card.Content>
                 <Card.Content extra>
@@ -116,7 +119,7 @@ class Profile extends React.Component {
 
             </Grid.Column>
             <Grid.Column width={11}>
-            <h1> "Bienvenido usuario ;)"  </h1> 
+            <h1> "Bienvenido usuario"  </h1> 
             </Grid.Column>
         </Grid>
       </div>
