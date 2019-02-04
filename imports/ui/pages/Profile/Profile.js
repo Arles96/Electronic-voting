@@ -3,7 +3,7 @@ import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Grid, Image, Card, Icon, Feed} from 'semantic-ui-react';
-
+import Navbar from '../../components/Navbar';
 
 import './Profile.scss';
 
@@ -24,35 +24,17 @@ class Profile extends React.Component {
 
   render() {
     return (
-      <div className="profile-page">
-       <div class="ui secondary pointing menu">
-        <a class="item">
-          Home
-        </a>
-        <a class="item">
-          Messages
-        </a>
-        <a class="item">
-          Friends
-         </a>
-       <div class="right menu">
-          <a class="ui item active">
-             Logout
-          </a>
-         </div>
-          </div>
-         <div class="ui segment">
-          <p></p>
-        </div>
-        <Grid>
-          <Grid.Column width={5}>
+      <div >
+       <Navbar/>
+        <Grid container className="profile-page">
+          <Grid.Column width={8}>
               <Card>
                 <Icon.Group size='huge'>
                   <Icon size='big' name='circle outline' />
                   <Icon name='user' />
                 </Icon.Group>
                 <Card.Content>
-                  <Card.Header>Ramiro</Card.Header>
+                  <Card.Header>{Meteor.user().profile.firstName} {Meteor.user().profile.lastName}</Card.Header>
                   <Card.Meta>
                     <span className='date'>Joined in 2015</span>
                   </Card.Meta>
@@ -64,7 +46,7 @@ class Profile extends React.Component {
                      <Icon name='home' size='large' /> <p1> "Lugar"  </p1>
                    </div>
                    <div>
-                     <Icon name='envelope' size='large' /> <p1> "Correo"  </p1>
+                     <Icon name='envelope' size='large' /> {Meteor.user().emails[0].address}
                    </div>
                    <div>
                      <Icon name='mobile alternate' size='large' /> <p1> "Celular"  </p1>
@@ -118,7 +100,7 @@ class Profile extends React.Component {
               </Card>
 
             </Grid.Column>
-            <Grid.Column width={11}>
+            <Grid.Column width={8}>
             <h1> "Bienvenido usuario"  </h1> 
             </Grid.Column>
         </Grid>
