@@ -1,7 +1,4 @@
-import { Meteor } from 'meteor/meteor';
+import { Mongo } from 'meteor/mongo';
 
-Meteor.pollings.deny({
-  update() {
-    return true;
-  },
-});
+const Pollings = new Mongo.Collection('pollings')
+export default Pollings;
