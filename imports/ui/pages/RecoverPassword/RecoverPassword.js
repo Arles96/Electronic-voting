@@ -50,6 +50,9 @@ class RecoverPassword extends React.Component {
     return (
       <div id="recover-pwd-page" >
         <div className="container-recover " >
+          <a href='login' id="returnLogin" >
+            <Icon name="arrow left" />
+          </a>
           <Header icon textAlign="center" className="header-rpwd" >
             <Icon name="mail" />
             <h2>Restablecer tu contraseña</h2>
