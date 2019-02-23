@@ -42,9 +42,9 @@ class RecoverPassword extends React.Component {
     return (
       <div id="recover-pwd-page" >
         <NavBar />
-        <Container>
+        <Container className="container-recover " >
           <Header textAlign="center" className="header-rpwd" >
-            Restablecer tu contraseña
+            <h2>Restablecer tu contraseña</h2>
           </Header>
           <Form onSubmit={this.handleSubmit} >
             <Form.Field>
