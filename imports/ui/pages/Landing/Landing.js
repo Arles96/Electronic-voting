@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import NavbarHome from '../../components/Navbar/Navbar';
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom';
 import {
   Button,
   Container,
@@ -84,7 +85,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button primary size='huge'>
+    <Button as={Link} to={"/signup"}  primary size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -229,7 +230,7 @@ const HomepageLayout = () => (
         </Grid.Row>
       </Grid>
     </Segment>
-    <Segment style={{ padding: '8em 0em' }} vertical>
+    <Segment style={{ padding: '8em 0em' }} vertical id="el">
       <Container text>
         <Header as='h3' style={{ fontSize: '2em' }}>
           Breaking The Grid, Grabs Your Attention
