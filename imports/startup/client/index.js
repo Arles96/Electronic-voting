@@ -1,4 +1,4 @@
-import 'semantic-ui-css/semantic.css'
+import 'semantic-ui-css/semantic.min.css'
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { render } from 'react-dom';

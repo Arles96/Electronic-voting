@@ -5,12 +5,20 @@ import {
   Container,
   Menu
 } from 'semantic-ui-react'
-class NavBar extends Component {
+import $ from 'jquery'
+class NavBar extends Component {  
+
+  constructor(props){
+    super(props);
+    this.scrollToBottom.bind(this);
+  }
 
   state = { activeItem: 'home' }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
-
+  scrollToBottom() {
+    $("el").scrollIntoView({ behavior: 'smooth' });
+  }
   render() {
     const { activeItem } = this.state
     const { fixed } = this.state
@@ -22,8 +30,8 @@ class NavBar extends Component {
               pointing={!fixed}
               secondary={!fixed}
               size='large'
+              id="HomepageHeading"
             >
-              <Container id="Homenavbar">
                 <Menu.Item
                   as={Link} to='/'
                   name='Página Principal'
@@ -31,7 +39,7 @@ class NavBar extends Component {
                   onClick={this.handleItemClick}
                   active
                 >Home</Menu.Item>
-                <Menu.Item as='a'>Work</Menu.Item>
+                <Menu.Item as='a' onClick={this.scrollToBottom} >Work</Menu.Item>
                 <Menu.Item as='a'>Company</Menu.Item>
                 <Menu.Item as='a'>Careers</Menu.Item>
                 <Menu.Item as='a'>
@@ -82,7 +90,6 @@ class NavBar extends Component {
                     Sign Up
                   </Button>
                 </Menu.Item>
-              </Container>
             </Menu>
       </div>
 
