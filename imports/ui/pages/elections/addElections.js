@@ -23,21 +23,21 @@ class addElections extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log("Before insert");
+    console.log('Before insert');
     var data = {
       title: e.target.title.value,
       description: e.target.description.value,
       type: e.target.type.value
     }
 
-    Meteor.call("insertElection", data, function(error, result){
+    Meteor.call('insertElection', data, function(error, result){
       if(error){
           console.log(error.reason);
           return;
       }
     })
 
-    console.log("After insert");
+    console.log('After insert');
   }
 
   render() {
@@ -45,23 +45,23 @@ class addElections extends React.Component {
       return null;
     }*/
     return (
-      <div className="Elections-page">
+      <div className='Elections-page'>
         <Navbar/>
         <h1>Elections Page</h1>
         <Form onSubmit = {this.handleSubmit.bind(this)}>
             <Form.Field>
               <Label>Título</Label>
-              <Input id = "Titulo" type = "text" name = "title" placeholder = "Título"/>
+              <Input id = 'Titulo' type = 'text' name = 'title' placeholder = 'Título'/>
             </Form.Field>
 
             <Form.Field>
               <Label>Descripción</Label>
-              <TextArea id = "Descripcion" name = "description" placeholder = "Descripción"/>
+              <TextArea id = 'Descripcion' name = 'description' placeholder = 'Descripción'/>
             </Form.Field>
             
             <Form.Field>
               <Label>Tipo de elección</Label>
-              <Input id = "Tipo" type = "text" name = "type" placeholder = "Tipo"/>
+              <Input id = 'Tipo' type = 'text' name = 'type' placeholder = 'Tipo'/>
             </Form.Field>
             <Button type = 'submit'>Crear</Button>
         </Form>

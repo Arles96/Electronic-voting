@@ -11,6 +11,7 @@ import Login from '../../ui/pages/Login';
 import Signup from '../../ui/pages/Signup';
 import Profile from '../../ui/pages/Profile';
 import addElections from '../../ui/pages/elections/addElections';
+import showElections from '../../ui/pages/elections/showElections';
 import Polling from '../../ui/pages/Polling';
 import NotFound from '../../ui/pages/Not-Found';
 import RecoverPassword from '../../ui/pages/RecoverPassword';
@@ -32,6 +33,7 @@ const App = props => (
         <PropsRoute path="/login" component={Login} {...props} />
         <PropsRoute path="/signup" component={Signup} {...props} />
         <PropsRoute path="/elections" component={addElections} {...props} />
+        <PropsRoute path="/show-elections" component={showElections} {...props} />
         <PropsRoute path="/votingforms" component={addVotingForms} {...props} />
         <PropsRoute path="/pollings" component={Polling} {...props} />
         <PropsRoute exact path="/profile" component={Profile} {...props} />
