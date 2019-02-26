@@ -2,7 +2,6 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import { Button, Input, Form, Label, TextArea } from 'semantic-ui-react';
 
-import PropTypes from 'prop-types';
 import Navbar from '../../components/Navbar/Navbar';
 
 import './Elections.scss';
@@ -23,7 +22,6 @@ class addElections extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    console.log('Before insert');
     var data = {
       title: e.target.title.value,
       description: e.target.description.value,
@@ -31,13 +29,13 @@ class addElections extends React.Component {
     }
 
     Meteor.call('insertElection', data, function(error, result){
-      if(error){
-          console.log(error.reason);
-          return;
+      if(error.error == 'validation-error'){
+        alert(error.details.message);
+      }else{
+        document.getElementById('electionsForm').reset();
+        alert('Elección creada');
       }
     })
-
-    console.log('After insert');
   }
 
   render() {

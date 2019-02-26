@@ -7,15 +7,12 @@ import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
 
-import Elections from './elections'
+import { Elections, ElectionsSchema } from './elections'
 
 Meteor.methods({
     insertElection: function(data) {
         console.log(data)
-        Elections.insert({
-            title: data.title,
-            description: data.description,
-            type: data.type
-        })
+        ElectionsSchema.validate(data);
+        Elections.insert(data);
     }
 });

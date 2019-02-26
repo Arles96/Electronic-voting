@@ -1,4 +1,4 @@
 import { Meteor } from 'meteor/meteor';
-import elections from '../elections';
+import { Elections } from '../elections';
 
-Meteor.publish('elections.all', () => elections.find());
+Meteor.publish('elections.all', () => Elections.find());
