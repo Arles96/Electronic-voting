@@ -1,7 +1,7 @@
 import React from 'react';
-import { Container, Header, Form, Button } from 'semantic-ui-react';
+import { Header, Form, Icon, Message, Input } from 'semantic-ui-react';
 import { Accounts } from 'meteor/accounts-base';
-import NavBar from '../../components/Navbar/';
+import ButtonLoadingInverted from '../../components/ButtonLoadingInverted/ButtonLoadingInverted';
 
 import './RecoverPassword.scss';
 
@@ -10,7 +10,9 @@ class RecoverPassword extends React.Component {
   constructor (props) {
     super(props);
     this.state = {
-      err: ''
+      err: '',
+      success: '',
+      loading: false
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -30,32 +32,51 @@ class RecoverPassword extends React.Component {
   }
 
   handleSubmit (e) {
+    this.setState({ loading: true });
     const email = e.target.email.value;
     Accounts.forgotPassword({ email }, (err) => {
       if (err) {
-        console.log(err);
+        console.log(err)
+        this.setState({ err: 'Este correo no existe', success: '' });
+      } else {
+        this.setState({ success: 'Se ha enviado el correo exitosamente.', err: '' });
       }
+      this.setState({ loading: false });
     })
   }
 
   render () {
+    const { loading, err, success } = this.state;
     return (
       <div id="recover-pwd-page" >
-        <NavBar />
-        <Container>
-          <Header textAlign="center" className="header-rpwd" >
-            Restablecer tu contraseña
+        <div className="container-recover " >
+          <a href='login' id="returnLogin" >
+            <Icon name="arrow left" />
+          </a>
+          <Header icon textAlign="center" className="header-rpwd" >
+            <Icon name="mail" />
+            <h2>Restablecer tu contraseña</h2>
           </Header>
+          {err && <Message error content={err} />}
+          {success && <Message success content={success} />}
           <Form onSubmit={this.handleSubmit} >
             <Form.Field>
               <label>Correo:</label>
-              <input type="email" name="email" />
+              <Input iconPosition="left">
+                <Icon name="at" />
+                <input type="email" name="email" />
+              </Input>
             </Form.Field>
             <Form.Field className="text-center" >
-              <Button className="btn-recover" inverted color="green" >Enviar</Button>
+              <ButtonLoadingInverted
+                className="btn-recover"
+                text="Enviar"
+                loading={loading}
+                color="green"
+              />
             </Form.Field>
           </Form>
-        </Container>
+        </div>
       </div>
     );
   }
