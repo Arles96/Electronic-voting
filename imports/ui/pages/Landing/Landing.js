@@ -1,5 +1,6 @@
 import PropTypes from 'prop-types';
 import NavbarHome from '../../components/Navbar/Navbar';
+import NavbarLogout from '../../components/NavbarLogout/NavbarLogout'
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import {
@@ -18,7 +19,6 @@ import {
   Visibility,
 } from 'semantic-ui-react'
 import './Landing.scss';
-import NavBar from '../../components/Navbar/Navbar';
 
 const getWidth = () => {
   const isSSR = typeof window === 'undefined'
@@ -34,6 +34,12 @@ class DesktopContainer extends Component {
 
   render() {
     const { children } = this.props
+    let nav;
+    if (this.props.loggedIn){
+      nav =<NavbarLogout/> 
+    }else{
+      nav = <NavbarHome/>
+    }
     return (
       <Responsive getWidth={getWidth} minWidth={Responsive.onlyTablet.minWidth}>
         <Visibility
@@ -47,7 +53,8 @@ class DesktopContainer extends Component {
             style={{ minHeight: 700, padding: '1em 0em' }}
             vertical
           >
-            <NavbarHome/>
+            
+           {nav}
             <HomepageHeading />
           </Segment>
         </Visibility>
