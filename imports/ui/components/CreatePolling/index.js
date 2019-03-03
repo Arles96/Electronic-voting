@@ -1,3 +1,3 @@
-import CreatePolling from './CreatePolling.js';
+import CreatePolling from './CreatePolling';
 
 export default CreatePolling;
