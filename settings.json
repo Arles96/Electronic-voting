@@ -1,9 +1,5 @@
 {
   "private": {
-<<<<<<< HEAD
     "smtp": "smtp://CJAlvarezUnitec:Ps6470351@smtp.sendgrid.net:587"
-=======
-    "smtp": "smtp://Arles96:Hola12345678@smtp.sendgrid.net:587"
->>>>>>> cae8e334be8a2cb5cd6d31b94bc4026e825083d0
   }
 }
