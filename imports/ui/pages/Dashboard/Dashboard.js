@@ -23,7 +23,7 @@ class Dashboard extends Component {
   render() {
     return <div className="Dashboard-body">
       <NavBar />
-      <Grid doubling >
+      <Grid doubling>
         <Grid.Row >
           <Grid.Column width={3}>
             <LeftMenu handleItemClick={this.handleItemClick} />

@@ -1,49 +1,66 @@
 import React, { Component } from 'react';
-import { Button, Checkbox, Form, Input } from 'semantic-ui-react'
+import { Button, Form, Input, Icon, Modal, Header, Dimmer } from 'semantic-ui-react'
 import './CreatePolling.scss';
 import { Meteor } from 'meteor/meteor';
-
-const options = [
-  { key: 'm', text: 'Male', value: 'male' },
-  { key: 'f', text: 'Female', value: 'female' },
-]
 
 class CreatePolling extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      active: false
     };
     this.handleOnSubmit = this.handleOnSubmit.bind(this);
+    this.handleClose = this.handleClose.bind(this);
   }
 
   handleOnSubmit(event) {
     event.preventDefault();
-    Meteor.call('insertPolling', { name: event.target.pollingName.value }, (error, result) => {
-
+    if (new Date() > new Date(event.target.finish_date.value)) {
+      alert('Fecha inválida');
+      return 0;
+    }
+    Meteor.call('insertPolling', {
+      idCreator: Meteor.userId(),
+      name: event.target.name.value,
+      members: [],
+      finish_date: event.target.finish_date.value,
+      voted: [],
+      status: 'enabled'
+    }, (error, result) => {
+      if (error) {
+        alert(error.error);
+      } else {
+        document.getElementById('finish_date').value = '';
+        document.getElementById('name').value = '';
+        this.setState(state => ({ active: true }));
+      }
     });
   }
+  handleClose = () => this.setState(state => ({ active: false }));
 
   render() {
-    return <Form onSubmit={this.handleOnSubmit}>
-      <h1>Crear nueva votación</h1>
-      <Form.Group widths='equal'>
-        <Form.Field control={Input} label='Nombre' name="pollingName" placeholder='Nombre de votación...' required />
-      </Form.Group>
-      <Form.Field control={Button}></Form.Field>
-    </Form>;
+    return <div>
+      <Modal open={this.state.open} trigger={<Button>Crear votación</Button>} closeIcon>
+        <Modal.Header>Crear votación</Modal.Header>
+        <Modal.Content>
+          <Form onSubmit={this.handleOnSubmit}>
+            <Form.Group widths='equal'>
+              <Form.Field control={Input} id='name' label='Nombre' name='name' placeholder='Nombre de votación...' required />
+              <Form.Field control={Input} id='finish_date' type='datetime-local' label='Fecha de clausura' name='finish_date' required />
+            </Form.Group>
+            <Form.Field control={Button}>Crear</Form.Field>
+          </Form>
+        </Modal.Content>
+      </Modal>
+      <Dimmer active={this.state.active} onClickOutside={this.handleClose} page>
+        <Header as='h2' icon inverted>
+          <Icon name='thumbs up outline' />
+          ¡Votación creada exitosamente!
+            <Header.Subheader className='pointer'>Ver detalles</Header.Subheader>
+        </Header>
+      </Dimmer>
+    </div>;
   }
 }
 
 export default CreatePolling;
-
-/*
-idCreator: data.creator, //  Creator Id
-name: data.name, // Name
-members: data.members, // User list
-creation_date: data.creation_date, // Creation date
-finish_date: data.finish_date, // Finish date
-voted: data.voted, // Members who already voted
-no_voted: data.no_voted, // Members who have not voted
-status: data.status, // Votation status
-Ats: () => new Date() // Votation Ats
-*/
