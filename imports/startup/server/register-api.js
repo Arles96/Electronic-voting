@@ -5,8 +5,8 @@
 
 // users api
 import '../../api/users/publications.js';
-import '../../api/elections/methods';
 import '../../api/votingforms/methods';
-import '../../api/pollings/methods';
+import '../../api/Elections/publications';
+import '../../api/Elections/methods';
 
 // import another api

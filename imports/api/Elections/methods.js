@@ -1,11 +1,11 @@
 import { Meteor } from 'meteor/meteor';
 import { check } from 'meteor/check';
 
-import Pollings from './pollings'
+import Elections from './Elections'
 
 Meteor.methods({
-  insertPolling: function (data) {
-    const done = Pollings.insert({
+  insertElection: function (data) {
+    const done = Elections.insert({
       idCreator: data.creator, //  Creator Id
       name: data.name, // Name
       members: data.members, // User list
@@ -13,6 +13,12 @@ Meteor.methods({
       voted: data.voted, // Members who already voted
       status: data.status, // Votation status
       createAt: new Date() // Votation createAt
+    });
+    return done;
+  },
+  removeElection: function (id) {
+    const done = Elections.remove({
+      _id: id
     });
     return done;
   }

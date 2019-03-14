@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Grid } from 'semantic-ui-react'
 import NavBar from '../../components/Navbar/Navbar';
 import LeftMenu from '../../components/LeftMenu/LeftMenu';
-import Pollings from '../Pollings/Pollings';
+import ElectionPage from '../ElectionPage/ElectionPage';
 import Home from '../Home/Home';
 import './Dashboard.scss';
 
@@ -16,6 +16,7 @@ class Dashboard extends Component {
       timer: 30
     };
     this.handleItemClick = this.handleItemClick.bind(this);
+    Meteor.subscribe('Elections.all');
   }
 
   handleItemClick = item => this.setState(state => item);
@@ -30,7 +31,7 @@ class Dashboard extends Component {
           </Grid.Column>
           <Grid.Column width={13}>
             {(this.state.activeItem === 'Inicio' ? <Home /> : '')}
-            {(this.state.activeItem === 'Votaciones' ? <Pollings /> : '')}
+            {(this.state.activeItem === 'Elecciones' ? <ElectionPage /> : '')}
           </Grid.Column>
         </Grid.Row>
       </Grid>

@@ -28,8 +28,8 @@ class LeftMenu extends Component {
           onClick={this.handleItemClick}
         />
         <Menu.Item
-          name='Votaciones'
-          active={activeItem === 'Votaciones'}
+          name='Elecciones'
+          active={activeItem === 'Elecciones'}
           onClick={this.handleItemClick}
         />
         <Menu.Item
