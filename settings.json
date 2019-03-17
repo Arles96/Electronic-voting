@@ -1,0 +1,5 @@
+{
+  "private": {
+    "smtp": "smtp://MarioRaudales23:Hola12345@smtp.sendgrid.net:587"
+  }
+}

@@ -5,9 +5,6 @@ import { NavLink } from 'react-router-dom';
 import NavBar from '../../components/Navbar';
 import { Form, Container, Header, Icon, Button, Message } from 'semantic-ui-react';
 
-// import components
-import Alert from '../../components/Alert';
-
 // import styles
 import './Login.scss';
 
@@ -22,13 +19,13 @@ class Login extends React.Component {
 
   componentWillMount() {
     if (this.props.loggedIn) {
-      return this.props.history.push('/profile');
+      return this.props.history.push('/pollings');
     }
   }
 
   shouldComponentUpdate(nextProps) {
     if (nextProps.loggedIn) {
-      nextProps.history.push('/profile');
+      nextProps.history.push('/pollings');
       return false;
     }
     return true;
@@ -70,6 +67,9 @@ class Login extends React.Component {
               <label>Contraseña</label>
               <input type="password" name="password" />
             </Form.Field>
+            <div style={{ marginBottom: '1rem' }} >
+              <NavLink to='/recover-password' >¿Olvidaste tu contraseña?</NavLink>
+            </div>
             <div className="text-center" >
               <Button inverted color="blue" className="btn-signin">Iniciar Sesión</Button>
             </div>
