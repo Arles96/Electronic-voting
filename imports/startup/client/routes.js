@@ -68,6 +68,6 @@ export default withTracker(() => {
   return {
     loggingIn,
     userReady,
-    loggedIn,
+    loggedIn
   };
 })(App);

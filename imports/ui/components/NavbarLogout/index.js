@@ -1,3 +1,3 @@
-import Navbar from './Navbar.js';
+import Navbar from './NavbarLogout';
 
 export default Navbar;

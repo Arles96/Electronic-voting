@@ -2,14 +2,14 @@ import { Dropdown, Icon } from 'semantic-ui-react'
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 
-class AccountDropdown extends Component { 
+class AccountDropdown extends Component {
     render() {
         const trigger = (
             <span>
              Hola mundo
             </span>
           )
-          
+
           const options = [
             { key: 'user', text: 'Account', icon: 'user' },
             { key: 'settings', text: 'Settings', icon: 'settings' },

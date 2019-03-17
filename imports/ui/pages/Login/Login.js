@@ -2,7 +2,8 @@ import { Meteor } from 'meteor/meteor';
 import React from 'react';
 import PropTypes from 'prop-types';
 import { NavLink } from 'react-router-dom';
-import { Form, Header, Icon, Button, Message } from 'semantic-ui-react';
+import NavBar from '../../components/Navbar';
+import { Form, Container, Header, Icon, Button, Message } from 'semantic-ui-react';
 
 // import styles
 import './Login.scss';
@@ -36,7 +37,7 @@ class Login extends React.Component {
     const password = e.target.password.value;
     Meteor.loginWithPassword(email, password, err => {
       if (err) {
-        this.setState({ err: 'Correo o contraseña incorrectas.' });
+        this.setState({ err: err.reason });
       }
     });
   }
@@ -45,13 +46,13 @@ class Login extends React.Component {
     if (this.props.loggedIn) {
       return null;
     }
+
     const { err } = this.state;
     return (
       <div id="loginSection">
-        <div className="container-login">
-          <a href='/' id="returnLogin" >
-            <Icon name="arrow left" />
-          </a>
+        <NavBar />
+        <Container>
+          <br />
           <Header as="h2" icon textAlign="center" >
             <Icon name="user" circular />
             Iniciar Sesión
@@ -73,7 +74,7 @@ class Login extends React.Component {
               <Button inverted color="blue" className="btn-signin">Iniciar Sesión</Button>
             </div>
           </Form>
-        </div>
+        </Container>
       </div>
     );
   }

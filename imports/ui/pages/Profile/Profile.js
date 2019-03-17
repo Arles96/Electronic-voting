@@ -1,14 +1,14 @@
 import { Meteor } from 'meteor/meteor';
-import { withTracker } from 'meteor/react-meteor-data';
 import React from 'react';
 import PropTypes from 'prop-types';
+import { withTracker } from 'meteor/react-meteor-data';
+import NavbarLogout from '../../components/NavbarLogout';
 import { Grid, Image, Card, Icon, Feed} from 'semantic-ui-react';
-import Navbar from '../../components/Navbar';
 
 import './Profile.scss';
 
 class Profile extends React.Component {
-  componentWillMount() {
+  /* componentWillMount() {
     if (!this.props.loggedIn) {
       return this.props.history.push('/login');
     }
@@ -20,36 +20,40 @@ class Profile extends React.Component {
       return false;
     }
     return true;
-  }
+  } */
 
   render() {
+    console.log(this.props);
+    const { user } = this.props;
     return (
-      <div >
-       <Navbar/>
+      <div id="profileHome" >
+        <NavbarLogout />
         <Grid container className="profile-page">
           <Grid.Column width={8}>
               <Card>
-                <Icon.Group size='huge'>
-                  <Icon size='big' name='circle outline' />
+                <Icon.Group className="icon-group-profile"  size='huge'>
                   <Icon name='user' />
                 </Icon.Group>
                 <Card.Content>
-                  <Card.Header>{Meteor.user().profile.firstName} {Meteor.user().profile.lastName}</Card.Header>
+                  <Card.Header>
+                  {user && user.profile.firstName}
+                  {user && user.profile.lastName}
+                  </Card.Header>
                   <Card.Meta>
                     <span className='date'>Joined in 2015</span>
                   </Card.Meta>
                   <Card.Description>Matthew is a musician living in Seattle.</Card.Description>
                     <div>
-                     <Icon name='briefcase' size='large' /> <p1> "Carrera"  </p1>
+                     <Icon name='briefcase' size='large' /> <p> "Carrera"  </p>
                    </div>
                    <div>
-                     <Icon name='home' size='large' /> <p1> "Lugar"  </p1>
+                     <Icon name='home' size='large' /> <p> "Lugar"  </p>
                    </div>
                    <div>
-                     <Icon name='envelope' size='large' /> {Meteor.user().emails[0].address}
+                     <Icon name='envelope' size='large' />arles.cerrato@gmail.com
                    </div>
                    <div>
-                     <Icon name='mobile alternate' size='large' /> <p1> "Celular"  </p1>
+                     <Icon name='mobile alternate' size='large' /> <p> "Celular"  </p>
                    </div>
                 </Card.Content>
                 <Card.Content extra>
@@ -116,10 +120,11 @@ Profile.propTypes = {
     push: PropTypes.func.isRequired,
   }).isRequired,
 };
-/*
-export default withTracker(() => {
-  // counters example
-  return undefined;
-})(Profile); */
 
-export default Profile;
+export default withTracker(props => {
+  return {
+    user: Meteor.user(),
+    loggedIn: props.loggedIn,
+    history: props.history
+  }
+})(Profile);
