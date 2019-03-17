@@ -10,23 +10,9 @@ class VotationMember extends Component {
     super(props);
     this.state = {
     };
-    this.handleRemove = this.handleRemove.bind(this);
     this.resetComponent = this.resetComponent.bind(this);
     this.handleResultSelect = this.handleResultSelect.bind(this);
     this.handleSearchChange = this.handleSearchChange.bind(this);
-  }
-
-  handleRemove() {
-    this.props.update();
-    if (confirm("¿Eliminar?")) {
-      Meteor.call('removeElection', this.props.item._id, (error, result) => {
-        if (error) {
-          alert(error.error);
-        } else {
-          this.setState(state => ({ active: true }));
-        }
-      });
-    }
   }
 
   componentWillMount() {
@@ -35,7 +21,10 @@ class VotationMember extends Component {
 
   resetComponent = () => this.setState(state => ({ isLoading: false, results: [], value: '' }));
 
-  handleResultSelect = (e, { result }) => this.setState(state => ({ value: (result.title) }));
+  handleResultSelect = (e, { result }) => {
+    this.setState(state => ({ value: (result.title), userId: result.key }))
+    this.props.handleSelectMember(result.key);
+  };
 
   handleSearchChange = (e, { value }) => {
     this.setState(state => ({ isLoading: true, value }));
@@ -43,7 +32,7 @@ class VotationMember extends Component {
     setTimeout(() => {
       const { value } = this.state;
       const members = Meteor.users.find({
-        _id: { $nin: Elections.findOne({ _id: this.props.item._id }).members }
+        _id: { $nin: Elections.findOne({ _id: this.props.election._id }).members }
       }).fetch().map(item => ({
         title: item.profile.firstName + " " + item.profile.lastName,
         key: item._id
@@ -63,7 +52,7 @@ class VotationMember extends Component {
 
   render() {
     const { isLoading, value, results } = this.state;
-    
+
     return (
       <Search
         input={{ icon: 'search', iconPosition: 'left' }}
@@ -74,7 +63,6 @@ class VotationMember extends Component {
         })}
         results={results}
         value={value}
-        {...this.props}
       />
     )
   }

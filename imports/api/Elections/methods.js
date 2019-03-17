@@ -21,5 +21,20 @@ Meteor.methods({
       _id: id
     });
     return done;
+  },
+  addMembersElection: function (data) {
+    const { election, userId } = data;
+    const done = Elections.update({ _id: election._id }, {
+      $set: {
+        idCreator: election.creator,
+        name: election.name,
+        members: election.members.concat([userId]),
+        finish_date: election.finish_date,
+        voted: election.voted,
+        status: election.status,
+        createAt: election.createAt
+      }
+    });
+    return done;
   }
 });
