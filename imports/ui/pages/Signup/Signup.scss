@@ -1,7 +1,27 @@
 #signupPage {
 
-  .padding-top {
-    padding-top: 1rem;
+  background: #F7F6F6;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-content: center;
+
+  .container-signup {
+    padding-top: 0.5rem;
+    width: 450px;
+    height: fit-content;
+    margin: auto;
+    padding: 1rem;
+    background: white;
+    transition: box-shadow .25s, -webkit-box-shadow .25s;
+    border-radius: 2px;
+  }
+
+  #returnLogin {
+    text-decoration: none;
+    color: black;
+    font-size: 2rem;
   }
 
   .btn-signup {
