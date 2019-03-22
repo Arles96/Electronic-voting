@@ -1,4 +1,4 @@
-import { Meteor } from 'meteor/meteor';
+import { Accounts } from 'meteor/accounts-base';
 import { Dropdown, Icon } from 'semantic-ui-react'
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
@@ -13,24 +13,25 @@ class AccountDropdown extends Component {
   }
 
   logout() {
-    Meteor.logout((err) => {
-      if (err) {
-        console.log(err.reason);
-      } else {
-        this.props.history.push('/');
-      }
-    });
+    Accounts.logout();
+    window.location.href = '/';
   }
+
+  redirect (url) {
+    window.location.href = url;
+  }
+
   render() {
     const trigger = (
       <span>
-        Hola mundo
+        Opciones
       </span>
     )
 
     const options = [
       { key: 'user', text: 'Account', icon: 'user' },
-      { key: 'settings', text: 'Settings', icon: 'settings' },
+      { hey: 'dashboard', text: 'dashboard', icon: 'dashboard', onClick: () => this.redirect('/dashboard') },
+      { key: 'settings', text: 'Settings', icon: 'settings', onClick: () => this.redirect('/settings') },
       { key: 'sign-out', text: 'Sign Out', icon: 'sign out', onClick: () => this.logout() },
     ]
     return (

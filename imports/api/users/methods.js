@@ -4,4 +4,16 @@
  */
 
 import { Meteor } from 'meteor/meteor';
-import { check } from 'meteor/check';
+import UpdateProfileSchema from './updateProfile';
+
+
+Meteor.methods({
+  updateProfile: function (doc) {
+    UpdateProfileSchema.validate(doc);
+    Meteor.users.update({ _id: Meteor.userId() }, {
+      $set: {
+        profile: doc
+      }
+    });
+  }
+});
