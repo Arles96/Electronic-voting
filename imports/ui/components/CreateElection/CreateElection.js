@@ -37,6 +37,7 @@ class CreateElection extends Component {
         this.setState(() => ({ active: true }));
       }
     });
+    window.location.reload();
   }
 
   handleClose = () => {

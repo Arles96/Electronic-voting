@@ -51,7 +51,7 @@ Dashboard.propTypes = {
 };
 
 export default withTracker(props => {
-  const readyElections = Meteor.subscribe('Elections.once');
+  const readyElections = Meteor.subscribe('Elections.all');
   const elections = Elections.find();
   return {
     user: Meteor.user(),
