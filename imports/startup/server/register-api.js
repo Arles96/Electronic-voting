@@ -8,5 +8,5 @@ import '../../api/users/publications.js';
 import '../../api/votingforms/methods';
 import '../../api/Elections/publications';
 import '../../api/Elections/methods';
-
+import '../../api/emailverification/methods';
 // import another api
