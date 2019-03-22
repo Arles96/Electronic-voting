@@ -42,6 +42,30 @@ class NavBar extends Component {
                 <Menu.Item as='a' onClick={this.scrollToBottom} >Work</Menu.Item>
                 <Menu.Item as='a'>Company</Menu.Item>
                 <Menu.Item as='a'>Careers</Menu.Item>
+                <Menu.Item as='a'>
+                  <Button
+                    name='Elecciones'
+                    as={Link}
+                    to='/elections'
+                    active={activeItem === 'messages'}
+                    onClick={this.handleItemClick}
+                    inverted={!fixed}
+                  >
+                    Elections
+                  </Button>
+                </Menu.Item>
+                <Menu.Item as='a'>
+                  <Button
+                    name='Mostrar elecciones'
+                    as={Link}
+                    to='/show-elections'
+                    active={activeItem === 'messages'}
+                    onClick={this.handleItemClick}
+                    inverted={!fixed}
+                  >
+                    Mostrar Elections
+                  </Button>
+                </Menu.Item>
                 <Menu.Item position='right'>
                   <Button
                   name='Iniciar Sesión'
