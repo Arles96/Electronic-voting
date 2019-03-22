@@ -15,7 +15,7 @@ class ElectionListItemParty extends Component {
     return <List.Item>
       <List.Content>
         <Icon circular name='archive' />
-        {election.name}
+        {election.name} - {election.motto}
       </List.Content>
     </List.Item>;
   }
