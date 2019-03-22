@@ -8,22 +8,13 @@ import { Grid, Image, Card, Icon, Feed} from 'semantic-ui-react';
 import './Profile.scss';
 
 class Profile extends React.Component {
-  /* componentWillMount() {
-    if (!this.props.loggedIn) {
+  componentWillMount() {
+    if (!Meteor.userId()) {
       return this.props.history.push('/login');
     }
   }
 
-  shouldComponentUpdate(nextProps) {
-    if (!nextProps.loggedIn) {
-      nextProps.history.push('/login');
-      return false;
-    }
-    return true;
-  } */
-
   render() {
-    console.log(this.props);
     const { user } = this.props;
     return (
       <div id="profileHome" >
@@ -36,23 +27,22 @@ class Profile extends React.Component {
                 </Icon.Group>
                 <Card.Content>
                   <Card.Header>
-                  {user && user.profile.firstName}
-                  {user && user.profile.lastName}
+                  {user && user.profile.firstName} {user && user.profile.lastName}
                   </Card.Header>
                   <Card.Meta>
                     <span className='date'>Joined in 2015</span>
                   </Card.Meta>
                   <Card.Description>Matthew is a musician living in Seattle.</Card.Description>
-                    <div>
+                    <div className="item-profile" >
                      <Icon name='briefcase' size='large' /> <p> "Carrera"  </p>
                    </div>
-                   <div>
-                     <Icon name='home' size='large' /> <p> "Lugar"  </p>
+                   <div className="item-profile" >
+                     <Icon name='home' size='large' /> {user && user.profile.campus}
                    </div>
-                   <div>
-                     <Icon name='envelope' size='large' />arles.cerrato@gmail.com
+                   <div className="item-profile" >
+                     <Icon name='envelope' size='large' /> {user && user.emails[0].address}
                    </div>
-                   <div>
+                   <div className="item-profile" >
                      <Icon name='mobile alternate' size='large' /> <p> "Celular"  </p>
                    </div>
                 </Card.Content>
