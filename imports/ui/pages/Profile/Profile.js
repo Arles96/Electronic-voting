@@ -12,7 +12,7 @@ import './Profile.scss';
 
 class Profile extends React.Component {
   componentWillMount() {
-    if (!Meteor.userId()) {
+    if (!this.props.userId) {
       return this.props.history.push('/login');
     }
   }
@@ -117,6 +117,7 @@ export default withTracker(props => {
     loggedIn: props.loggedIn,
     history: props.history,
     elections: elections,
-    readyElections: readyElections.ready()
+    readyElections: readyElections.ready(),
+    userId: Meteor.userId()
   }
 })(Profile);
