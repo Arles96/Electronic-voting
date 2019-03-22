@@ -54,18 +54,6 @@ class NavBar extends Component {
                     Elections
                   </Button>
                 </Menu.Item>
-                <Menu.Item as='a'>
-                  <Button
-                    name='Mostrar elecciones'
-                    as={Link}
-                    to='/show-elections'
-                    active={activeItem === 'messages'}
-                    onClick={this.handleItemClick}
-                    inverted={!fixed}
-                  >
-                    Mostrar Elections
-                  </Button>
-                </Menu.Item>
                 <Menu.Item position='right'>
                   <Button
                   name='Iniciar Sesión'
