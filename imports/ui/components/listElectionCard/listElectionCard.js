@@ -16,10 +16,7 @@ const SingleCardElection = ({ name, finish_date, description }) => (
     <Card.Content extra>
       <div className='ui two buttons'>
         <Button basic color='green'>
-          Aceptar
-        </Button>
-        <Button basic color='red'>
-          Denegar
+          Votar
         </Button>
       </div>
     </Card.Content>
