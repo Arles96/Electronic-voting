@@ -4,6 +4,7 @@ import React, { Component } from 'react';
 import NavBar from '../../components/Navbar/Navbar';
 import Dashboard from '../../components/Dashboard/Dashboard';
 import './Polling.scss';
+import NavBarLogout from '../../components/NavbarLogout/NavbarLogout';
 
 class Polling extends Component {
   constructor(props) {
@@ -15,7 +16,7 @@ class Polling extends Component {
 
   render() {
     return <div className="polling-body">
-      <NavBar />
+      <NavBarLogout {...this.props} />
       <Dashboard />
     </div >;
   }
