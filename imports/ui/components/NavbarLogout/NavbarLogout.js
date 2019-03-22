@@ -9,7 +9,7 @@ import {
 import $ from 'jquery'
 class NavBarLogout extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.scrollToBottom.bind(this);
   }
@@ -56,8 +56,7 @@ class NavBarLogout extends Component {
                 </Menu.Item>
             </Menu>
       </div>
-
-    )
+    );
   }
 }
 

@@ -1,9 +1,9 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { Button, Form, Input, Icon, Modal, Header, Dimmer } from 'semantic-ui-react'
-import './CreateElection.scss';
- 
-class CreateElection extends Component {
+import './CreateParty.scss';
+
+class CreateParty extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -17,34 +17,24 @@ class CreateElection extends Component {
 
   handleOnSubmit(event) {
     event.preventDefault();
-    if (new Date() > new Date(event.target.finish_date.value)) {
-      alert('Fecha inválida');
-      return 0;
-    }
-    Meteor.call('insertElection', {
+    Meteor.call('insertParty', {
       idCreator: Meteor.userId(),
       name: event.target.name.value,
-      members: [],
-      finish_date: event.target.finish_date.value,
-      voted: [],
-      status: 'enabled'
+      motto:event.target.motto.value,
+      members: []
     }, (error, result) => {
       if (error) {
-        alert(error.error); // BorraloCJ
+        alert(error.error); // TODO
       } else {
-        document.getElementById('finish_date').value = '';
         document.getElementById('name').value = '';
+        document.getElementById('motto').value = '';
         this.setState(() => ({ active: true }));
       }
     });
     window.location.reload();
   }
 
-  handleClose = () => {
-    this.props.handleUpdate();
-    this.setState(() => ({ active: false, open: false }))
-  };
-  
+  handleClose = () => this.setState(() => ({ active: false, open: false }));
   handleOpen = () => this.setState(() => ({ open: true }));
 
   render() {
@@ -52,12 +42,12 @@ class CreateElection extends Component {
     return <div>
       <Modal
         open={open}
-        trigger={<Button onClick={this.handleOpen}>Crear elección</Button>}
+        trigger={<Button onClick={this.handleOpen}>Crear planilla</Button>}
         closeIcon
         onClose={this.handleClose}
       >
-        <Modal.Header>Crear elección</Modal.Header>
-
+        <Modal.Header>Crear planilla</Modal.Header>
+        
         <Modal.Content>
           <Form onSubmit={this.handleOnSubmit}>
             <Form.Group widths='equal'>
@@ -66,15 +56,15 @@ class CreateElection extends Component {
                 id='name'
                 label='Nombre'
                 name='name'
-                placeholder='Nombre de elección...'
+                placeholder='Nombre de la planilla...'
                 required
               />
               <Form.Field
                 control={Input}
-                id='finish_date'
-                type='datetime-local'
-                label='Fecha de clausura'
-                name='finish_date'
+                id='motto'
+                label='Lema'
+                name='motto'
+                placeholder='Lema de la planilla...'
                 required
               />
             </Form.Group>
@@ -90,7 +80,7 @@ class CreateElection extends Component {
       >
         <Header as='h2' icon inverted>
           <Icon name='thumbs up outline' />
-          ¡Elección creada exitosamente!
+          ¡Planilla creada exitosamente!
             <Header.Subheader className='pointer'>Ver detalles</Header.Subheader>
         </Header>
       </Dimmer>
@@ -98,4 +88,4 @@ class CreateElection extends Component {
   }
 }
 
-export default CreateElection;
+export default CreateParty;

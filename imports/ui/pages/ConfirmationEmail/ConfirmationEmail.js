@@ -21,7 +21,7 @@ class ConfirmationEmail extends Component {
     render() {
         console.log(this.props)
         if(!Meteor.userId()){
-            
+
         }
 
         if (this.state.verificacion && Meteor.userId()) {

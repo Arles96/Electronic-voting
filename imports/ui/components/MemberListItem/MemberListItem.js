@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { List, Icon, Grid } from 'semantic-ui-react'
 import './MemberListItem.scss';
 import { Meteor } from 'meteor/meteor';
-
+ 
 class MemberListItem extends Component {
   constructor(props) {
     super(props);
@@ -15,7 +15,7 @@ class MemberListItem extends Component {
       election: this.props.item,
       userId: this.state.userId
     }
-    Meteor.call('removeMembersElection', data, (error, result) => {
+    Meteor.call('removeElectionMember', data, (error, result) => {
       if (error) {
         alert(error.error);
       } else {

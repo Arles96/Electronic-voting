@@ -1,11 +1,12 @@
 import _ from 'lodash'
 import React, { Component } from 'react';
-import Elections from '../../../api/Elections/Elections';
+import Party from '../../../api/Party/Party';
 import { Search, Grid, Header, Segment } from 'semantic-ui-react'
-import './VotationMember.scss';
+import './VotationElectionParty.scss';
 import { Meteor } from 'meteor/meteor';
+import Elections from '../../../api/Elections/Elections';
  
-class VotationMember extends Component {
+class VotationElectionParty extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -23,7 +24,8 @@ class VotationMember extends Component {
 
   handleResultSelect = (e, { result }) => {
     this.setState(state => ({ value: (result.title), userId: result.key }))
-    this.props.handleSelectMember(result.key);
+    console.log(result.key)
+    this.props.handleSelectElection(result.key);
   };
 
   handleSearchChange = (e, { value }) => {
@@ -31,10 +33,10 @@ class VotationMember extends Component {
 
     setTimeout(() => {
       const { value } = this.state;
-      const members = Meteor.users.find({
-        _id: { $nin: Elections.findOne({ _id: this.props.election._id }).members }
+      const elections = Elections.find({
+        _id: { $nin: Party.findOne({ _id: this.props.party._id }).elections }
       }).fetch().map(item => ({
-        title: item.profile.firstName + " " + item.profile.lastName,
+        title: item.name,
         key: item._id
       }));
 
@@ -45,7 +47,7 @@ class VotationMember extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(members, isMatch),
+        results: _.filter(elections, isMatch),
       })
     }, 300)
   }
@@ -69,4 +71,4 @@ class VotationMember extends Component {
 
 }
 
-export default VotationMember;
+export default VotationElectionParty;

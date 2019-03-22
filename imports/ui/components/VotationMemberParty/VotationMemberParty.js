@@ -1,11 +1,11 @@
 import _ from 'lodash'
 import React, { Component } from 'react';
-import Elections from '../../../api/Elections/Elections';
+import Party from '../../../api/Party/Party';
 import { Search, Grid, Header, Segment } from 'semantic-ui-react'
-import './VotationMember.scss';
+import './VotationMemberParty.scss';
 import { Meteor } from 'meteor/meteor';
  
-class VotationMember extends Component {
+class VotationMemberParty extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -32,7 +32,7 @@ class VotationMember extends Component {
     setTimeout(() => {
       const { value } = this.state;
       const members = Meteor.users.find({
-        _id: { $nin: Elections.findOne({ _id: this.props.election._id }).members }
+        _id: { $nin: Party.findOne({ _id: this.props.party._id }).members }
       }).fetch().map(item => ({
         title: item.profile.firstName + " " + item.profile.lastName,
         key: item._id
@@ -69,4 +69,4 @@ class VotationMember extends Component {
 
 }
 
-export default VotationMember;
+export default VotationMemberParty;
