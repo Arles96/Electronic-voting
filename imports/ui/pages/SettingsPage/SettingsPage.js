@@ -5,6 +5,7 @@ import { Grid } from 'semantic-ui-react';
 import LeftMenuProfile from '../../components/leftMenuProfile/leftMenuProfile';
 import NavbarLogout from '../../components/NavbarLogout';
 import UdpdateInfoUser from '../../components/updateInfoUser/updateInfoUser';
+import Elections from '../../../api/Elections/Elections'
 
 class SettingsPage extends React.Component {
   componentWillMount () {
@@ -32,7 +33,7 @@ class SettingsPage extends React.Component {
 
 export default withTracker(props => {
   const readyElections = Meteor.subscribe('Elections.once');
-  const elections = Election.find();
+  const elections = Elections.find();
   return {
     user: Meteor.user(),
     loggedIn: props.loggedIn,

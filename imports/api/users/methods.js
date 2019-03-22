@@ -2,7 +2,7 @@
 /**
  * Meteor methods
  */
-
+import {Accounts} from 'meteor/accounts-base'
 import { Meteor } from 'meteor/meteor';
 import UpdateProfileSchema from './updateProfile';
 
@@ -15,5 +15,8 @@ Meteor.methods({
         profile: doc
       }
     });
+  }, updatePassword: function (doc) {
+    UpdatePasswordSchema.validate(doc);
+    Accounts.changePassword(doc.beforepassword,doc.password);
   }
 });

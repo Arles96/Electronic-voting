@@ -31,7 +31,7 @@ class AccountDropdown extends Component {
     const options = [
       { key: 'user', text: 'Account', icon: 'user' },
       { hey: 'dashboard', text: 'dashboard', icon: 'dashboard', onClick: () => this.redirect('/dashboard') },
-      { key: 'settings', text: 'Settings', icon: 'settings', onClick: () => this.redirect('/settings') },
+      { key: 'settings', text: 'Settings', icon: 'settings', onClick: () => this.redirect('/updateinfouser') },
       { key: 'sign-out', text: 'Sign Out', icon: 'sign out', onClick: () => this.logout() },
     ]
     return (
