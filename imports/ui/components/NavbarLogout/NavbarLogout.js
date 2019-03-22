@@ -7,7 +7,7 @@ import {
   Menu
 } from 'semantic-ui-react'
 import $ from 'jquery'
-class NavBarLogout extends Component {  
+class NavBarLogout extends Component {
 
   constructor(props){
     super(props);
@@ -33,7 +33,7 @@ class NavBarLogout extends Component {
   render() {
     const { activeItem } = this.state;
     const { fixed } = this.state;
-    
+
     return (
       <div>
             <Menu
@@ -51,9 +51,6 @@ class NavBarLogout extends Component {
                   onClick={this.handleItemClick}
                   active
                 >Home</Menu.Item>
-                <Menu.Item as='a' onClick={this.scrollToBottom} >Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'><Button onClick={this.enviar}>enviar</Button></Menu.Item>
                 <Menu.Item position='right'>
                   <AccountDropdown {...this.props}/>
                 </Menu.Item>

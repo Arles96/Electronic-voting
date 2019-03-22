@@ -7,6 +7,8 @@ import NavbarLogout from '../../components/NavbarLogout';
 import UdpdateInfoUser from '../../components/updateInfoUser/updateInfoUser';
 import Elections from '../../../api/Elections/Elections'
 
+import './SettingsPage.scss';
+
 class SettingsPage extends React.Component {
   componentWillMount () {
     if (!this.props.userId) {

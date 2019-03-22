@@ -3,7 +3,7 @@ import { Meteor } from 'meteor/meteor';
 import { Card, Button, Image } from 'semantic-ui-react';
 import Swal from 'sweetalert2';
 
-import './listElectionCard.scss'
+import './listElectionCard.scss';
 
 const SingleCardElection = ({ name, finish_date, description, _id }) => {
   const sendEmail = (id) => {

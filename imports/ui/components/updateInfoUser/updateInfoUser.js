@@ -1,12 +1,27 @@
 import React from 'react';
-import { Card, Header, Form, Message,Icon } from 'semantic-ui-react';
+import { Card, Header, Form, Message, Icon, Button } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import UpdateProfileSchema from '../../../api/users/updateProfile';
+
+import './updateInfoUser.scss';
+
+const campus = [
+  {
+    key: 'Unitec TGU',
+    value: 'Unitec TGU',
+    text: 'Unitec TGU'
+  },
+  {
+    key: 'Unitec SPA',
+    value: 'Unitec SPA',
+    text: 'Unitec SPA'
+  }
+];
 
 class UpdateInfoUser extends React.Component {
 
  /* constructor() {
-    
+
     this.handleSubmitProfile = this.handleSubmitProfile.bind(this);
     this.handleSubmitPassword = this.handleSubmitPassword.bind(this);
   }*/
@@ -40,8 +55,8 @@ class UpdateInfoUser extends React.Component {
   render() {
     //const { errProfile } = this.state;
     return (
-      <div>
-        <Card>
+      <div id="settingsCard" >
+        <Card className="card-info" >
           { /* Formulario para editar informacion de perfil */  }
           <Header as="h3" icon textAlign="center" >
             <Icon name="users" circular />
@@ -72,7 +87,7 @@ class UpdateInfoUser extends React.Component {
             </div>
           </Form>
         </Card>
-        <Card>
+        <Card className="card-info" >
           { /* Formulario para editar informacion de perfil */  }
           <Header as="h3" icon textAlign="center" >
             <Icon name="users" circular />
