@@ -92,7 +92,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button as={Link} to={"/signup"}  primary size='huge'>
+    <Button  as={Link} to={"/signup"}  primary size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -266,7 +266,7 @@ const HomepageLayout = () => (
           it's really true. It took years of gene splicing and combinatory DNA research, but our
           bananas can really dance.
         </p>
-        <Button as='a' size='large'>
+        <Button  as='a' size='large'>
           I'm Still Quite Interested
         </Button>
       </Container>

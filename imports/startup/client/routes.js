@@ -23,6 +23,7 @@ import Spinner from '../../ui/components/Spinner';
 // import hoc to pass additional props to routes
 import PropsRoute from '../../ui/pages/PropsRoute';
 import addVotingForms from '../../ui/pages/votingForms/addVotingForms';
+import ConfirmationEmail from '../../ui/pages/ConfirmationEmail';
 
 const App = props => (
   <Router>
@@ -44,8 +45,8 @@ const App = props => (
           {...props}
         />
         <PropsRoute
-          path="/reset-password/:token"
-          component={ResetPassword}
+          path="/ConfirmationEmail/:token"
+          component={ConfirmationEmail}
           {...props}
         />
         <PropsRoute component={NotFound} {...props} />
