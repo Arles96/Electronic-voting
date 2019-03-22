@@ -6,7 +6,7 @@ import {
   Menu
 } from 'semantic-ui-react'
 import $ from 'jquery'
-class NavBar extends Component {  
+class NavBar extends Component {
 
   constructor(props){
     super(props);

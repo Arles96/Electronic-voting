@@ -30,14 +30,13 @@ const App = props => (
       {props.loggingIn && <Spinner />}
       <Switch>
         <PropsRoute exact path="/" component={Landing} {...props} />
-        <PropsRoute path="/login" component={Login} {...props} />
+        <PropsRoute exact path="/login" component={Login} {...props} />
         <PropsRoute path="/signup" component={Signup} {...props} />
         <PropsRoute path="/elections" component={addElections} {...props} />
         <PropsRoute path="/show-elections" component={showElections} {...props} />
         <PropsRoute path="/votingforms" component={addVotingForms} {...props} />
         <PropsRoute path="/dashboard" component={Dashboard} {...props} />
         <PropsRoute exact path="/profile" component={Profile} {...props} />
-        <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
         <PropsRoute
           exact
           path="/recover-password"

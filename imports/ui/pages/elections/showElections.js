@@ -5,7 +5,7 @@ import { Table, Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Navbar from '../../components/Navbar/Navbar';
 
-import { Elections } from '../../../api/Elections/Elections'
+import Elections from '../../../api/Elections/Elections'
 import './Elections.scss';
 
 class showElections extends React.Component {
