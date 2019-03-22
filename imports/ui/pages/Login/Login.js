@@ -61,7 +61,7 @@ class Login extends React.Component {
             { err && <Message error content={err} /> }
             <Form.Field>
               <label>Correo</label>
-              <input type="email" name="email" />
+              <input type="email" name="email" /> 
             </Form.Field>
             <Form.Field>
               <label>Contraseña</label>
