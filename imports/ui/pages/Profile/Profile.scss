@@ -1,11 +1,16 @@
-.profile-page {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 80vh;
-  h1 {
-    font-size: 44px;
-    color: #333;
+
+#profileHome {
+  background: #F7F6F6;
+
+
+  .profile-page {
+    margin-top: 20px;
   }
+
+  .icon-group-profile {
+    text-align: center;
+    padding: 1rem;
+  }
+
 }
+
