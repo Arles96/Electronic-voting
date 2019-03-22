@@ -24,6 +24,7 @@ import Spinner from '../../ui/components/Spinner';
 import PropsRoute from '../../ui/pages/PropsRoute';
 import addVotingForms from '../../ui/pages/votingForms/addVotingForms';
 import ConfirmationEmail from '../../ui/pages/ConfirmationEmail/ConfirmationEmail';
+import updateInfoUser from '../../ui/pages/SettingsPage/SettingsPage'
 
 const App = props => (
   <Router>
@@ -38,6 +39,7 @@ const App = props => (
         <PropsRoute path="/votingforms" component={addVotingForms} {...props} />
         <PropsRoute path="/dashboard" component={Dashboard} {...props} />
         <PropsRoute exact path="/profile" component={Profile} {...props} />
+        <PropsRoute exact path="/updateinfouser" component={updateInfoUser} {...props} />
         <PropsRoute
           exact
           path="/recover-password"

@@ -1,6 +1,6 @@
 import {  } from 'meteor/meteor';
-import {  } from 'meteor/check';
-import {  } from 'meteor/tracker';
+import {  check} from 'meteor/check';
+import { Tracker } from 'meteor/tracker';
 import SimpleSchema from 'simpl-schema';
 import { messages } from '../regEx';
 
