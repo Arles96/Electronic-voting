@@ -41,7 +41,6 @@ class ShowParty extends Component {
   handleSelectMember = userId => this.setState(state => ({ userId: userId }));
 
   handleAddMember() {
-    window.location.reload();
     const data = {
       party: this.props.party,
       userId: this.state.userId
@@ -55,12 +54,12 @@ class ShowParty extends Component {
         this.setState(state => ({ dimmerMessage: "¡Miembro agregado exitosamente!", dimmerIcon: "user plus", active: true, updateMembers: true }));
       }
     });
+    window.location.reload();
   }
 
   handleSelectElection = electionId => this.setState(state => ({ electionId: electionId }));
 
   handleAddElection() {
-    window.location.reload();
     const data = {
       party: this.props.party,
       electionId: this.state.electionId
@@ -69,10 +68,11 @@ class ShowParty extends Component {
       if (error) {
         alert(error.error);
       } else {
-
+        
         this.setState(state => ({ dimmerMessage: "¡Agregado a la elección exitosamente!", dimmerIcon: "address card", active: true, updateMembers: true }));
       }
     });
+    window.location.reload();
   }
 
   handleCloseModal = () => this.setState(() => ({ active: false, open: false }));

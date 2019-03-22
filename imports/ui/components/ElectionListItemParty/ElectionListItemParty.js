@@ -14,7 +14,7 @@ class ElectionListItemParty extends Component {
     const { election } = this.props;
     return <List.Item>
       <List.Content>
-        <Icon circular name='user circle' />
+        <Icon circular name='archive' />
         {election.name}
       </List.Content>
     </List.Item>;

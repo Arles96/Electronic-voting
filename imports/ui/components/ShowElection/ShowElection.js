@@ -46,6 +46,7 @@ class ShowElection extends Component {
         this.setState(state => ({ dimmerMessage: "¡Miembro agregado exitosamente!", dimmerIcon: "user plus", active: true, updateMembers: true }));
       }
     });
+    window.location.reload();
   }
 
   handleCloseModal = () => this.setState(() => ({ active: false, open: false }));
