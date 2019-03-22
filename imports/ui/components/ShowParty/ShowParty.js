@@ -9,6 +9,8 @@ import MemberListItem from '../MemberListItem';
 import Party from '../../../api/Party/Party';
 import Elections from '../../../api/Elections/Elections';
 import VotationMemberParty from '../VotationMemberParty';
+import VotationElectionParty from '../VotationElectionParty';
+import ElectionListParty from '../ElectionListParty/ElectionListParty';
 
 class ShowParty extends Component {
   constructor(props) {
@@ -17,6 +19,7 @@ class ShowParty extends Component {
       updateMembers: false,
       active: false,
       userId: '',
+      electionId: '',
       dimmerMessage: "",
       dimmerIcon: 'remove circle'
     };
@@ -27,8 +30,10 @@ class ShowParty extends Component {
     this.handleRemove = this.handleRemove.bind(this);
     this.handleManage = this.handleManage.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
+    this.handleAddElecction = this.handleAddElection.bind(this);
     this.handleUpdate = this.handleUpdate.bind(this);
     this.handleSelectMember = this.handleSelectMember.bind(this);
+    this.handleSelectElection = this.handleSelectElection.bind(this);
   }
 
   handleUpdate = () => this.forceUpdate;
@@ -36,16 +41,37 @@ class ShowParty extends Component {
   handleSelectMember = userId => this.setState(state => ({ userId: userId }));
 
   handleAddMember() {
+    
     const data = {
       party: this.props.party,
       userId: this.state.userId
     }
+
+
+    console.log(data)
     Meteor.call('addPartyMember', data, (error, result) => {
       if (error) {
         alert(error.error);
       } else {
-        
+
         this.setState(state => ({ dimmerMessage: "¡Miembro agregado exitosamente!", dimmerIcon: "user plus", active: true, updateMembers: true }));
+      }
+    });
+  }
+
+  handleSelectElection = electionId => this.setState(state => ({ electionId: electionId }));
+
+  handleAddElection() {
+    const data = {
+      party: this.props.party,
+      electionId: this.state.electionId
+    }
+    Meteor.call('addPartyElection', data, (error, result) => {
+      if (error) {
+        alert(error.error);
+      } else {
+
+        this.setState(state => ({ dimmerMessage: "¡Agregado a la elección exitosamente!", dimmerIcon: "address card", active: true, updateMembers: true }));
       }
     });
   }
@@ -102,16 +128,34 @@ class ShowParty extends Component {
       onClose={this.handleCloseModal}
     >
       <Header>
-        Planilla {party.name}
+        Planilla {party.name} - <i>"{party.motto}"</i>
       </Header>
       <Modal.Content>
         <Segment placeholder textAlign={"center"} vertical>
           <Grid columns={2} relaxed='very' verticalAlign={"middle"} >
-            <Grid.Column textAlign={"center"} >
-              <Header as='h2'>{party.name}</Header>
-              <i>{party.motto}</i>
+            <Grid.Column textAlign={"left"} verticalAlign='middle'>
+              <Segment vertical>
+                <Header as='h2'>Agregar a Elección</Header>
+              </Segment>
+              <Segment vertical>
+                <Grid>
+                  <Grid.Row>
+                    <VotationElectionParty
+                      handleSelectElection={this.handleSelectElection}
+                      party={party} />
+                    <Button secondary icon labelPosition='right' onClick={this.handleAddElecction}>
+                      Agregar
+                      <Icon name='hand point down outline' />
+                    </Button>
+                  </Grid.Row>
+                </Grid>
+              </Segment>
+              <Segment vertical><ElectionListParty party={party} /></Segment>
             </Grid.Column>
             <Grid.Column textAlign={"left"} verticalAlign='middle'>
+              <Segment vertical>
+                <Header as='h2'>Agregar Miembros</Header>
+              </Segment>
               <Segment vertical>
                 <Grid>
                   <Grid.Row>

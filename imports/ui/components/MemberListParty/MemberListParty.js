@@ -12,7 +12,8 @@ class MemberListParty extends Component {
   }
   
   render() {
-    const listMembers = Meteor.users.find({ 
+    const listMembers = [];
+     Meteor.users.find({ 
       _id: { $in: this.props.party.members }
     }).fetch().map(member => <MemberListItemParty key={member._id} member={member} />);
     return <List className='MemberListParty' items={listMembers}></List>;
