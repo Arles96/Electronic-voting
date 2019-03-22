@@ -12,7 +12,7 @@ if (Meteor.isServer) {
       return Elections.find({
         $or: [
           { idCreator: Meteor.userId() },
-          { members: { $in: Meteor.userId() } }
+          { members: { $in: [Meteor.userId()] } }
         ]
       });
     }

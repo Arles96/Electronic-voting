@@ -32,14 +32,22 @@ class LeftMenu extends Component {
           active={activeItem === 'Elecciones'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
-          onClick={this.handleItemClick}
-        />
       </Menu>
     )
   }
 }
 
 export default LeftMenu;
+{
+   "_id" :
+ "vF4mypQTte77pP3aM",
+ "name" :
+ "Ford",
+ "members" : [
+   "ru6xer4Q5qrgwfqM7" ],
+ "finish_date" :
+ "2019-03-31T11:01",
+ "voted" : [ ],
+ "status" :
+ "enabled",
+ "createAt" : ISODate("2019-03-17T01:42:24.249Z") }
