@@ -2,7 +2,7 @@ import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import { Button, Form, Input, Icon, Modal, Header, Dimmer } from 'semantic-ui-react'
 import './CreateElection.scss';
-
+ 
 class CreateElection extends Component {
   constructor(props) {
     super(props);
@@ -39,7 +39,11 @@ class CreateElection extends Component {
     });
   }
 
-  handleClose = () => this.setState(() => ({ active: false, open: false }));
+  handleClose = () => {
+    this.props.handleUpdate();
+    this.setState(() => ({ active: false, open: false }))
+  };
+  
   handleOpen = () => this.setState(() => ({ open: true }));
 
   render() {
@@ -52,7 +56,7 @@ class CreateElection extends Component {
         onClose={this.handleClose}
       >
         <Modal.Header>Crear elección</Modal.Header>
-        
+
         <Modal.Content>
           <Form onSubmit={this.handleOnSubmit}>
             <Form.Group widths='equal'>

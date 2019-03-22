@@ -4,7 +4,7 @@ import Elections from '../../../api/Elections/Elections';
 import { Search, Grid, Header, Segment } from 'semantic-ui-react'
 import './VotationMember.scss';
 import { Meteor } from 'meteor/meteor';
-
+ 
 class VotationMember extends Component {
   constructor(props) {
     super(props);

@@ -1,44 +1,65 @@
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import './ShowElection.scss';
-import { Icon, Modal, Table, Header, Button, Segment, Grid, Divider, Dimmer, GridRow } from 'semantic-ui-react'
+import { Icon, Modal, Table, Header, Button, Segment, Grid, Divider, Dimmer, GridRow, List } from 'semantic-ui-react'
 import VotationMember from '../VotationMember';
-import MemberList from '../MemberList/MemberList';
+import Elections from '../../../api/Elections/Elections';
+import MemberListItem from '../MemberListItem';
 
 class ShowElection extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      updateMembers: false,
       active: false,
-      userId: ''
+      userId: '',
+      dimmerMessage: "",
+      dimmerIcon: 'remove circle'
     };
+
+    this.handleOpen = this.handleOpen.bind(this);
     this.handleClose = this.handleClose.bind(this);
+    this.handleCloseModal = this.handleCloseModal.bind(this);
     this.handleRemove = this.handleRemove.bind(this);
     this.handleManage = this.handleManage.bind(this);
     this.handleAddMember = this.handleAddMember.bind(this);
+    this.handleUpdate = this.handleUpdate.bind(this);
     this.handleSelectMember = this.handleSelectMember.bind(this);
   }
 
-  handleSelectMember= userId => this.setState(state => ({ userId: userId }));
+  handleUpdate = () => this.forceUpdate;
 
+  handleSelectMember = userId => this.setState(state => ({ userId: userId }));
 
   handleAddMember() {
     const data = {
       election: this.props.election,
       userId: this.state.userId
     }
-    Meteor.call('addMembersElection', data, (error, result) => {
+    Meteor.call('addElectionMember', data, (error, result) => {
       if (error) {
         alert(error.error);
       } else {
-        this.setState(state => ({ active: true }));
+        
+        this.setState(state => ({ dimmerMessage: "¡Miembro agregado exitosamente!", dimmerIcon: "user plus", active: true, updateMembers: true }));
       }
     });
   }
 
-  handleClose() {
-    this.setState(state => ({ active: false }));
+  handleCloseModal = () => this.setState(() => ({ active: false, open: false }));
+
+  handleClose = () => {
+    if (this.state.dimmerIcon === 'remove circle') {
+      this.setState(() => ({ active: false, open: false }))
+    } else {
+      this.setState(() => ({ active: false, dimmerIcon: "" }))
+      this.forceUpdate();
+    }
   };
+
+  handleOpen = () => this.setState(() => ({ open: true }));
 
   handleRemove() {
     if (confirm("¿Eliminar?")) {
@@ -46,7 +67,8 @@ class ShowElection extends Component {
         if (error) {
           alert(error.error);
         } else {
-          this.setState(state => ({ active: true }));
+          this.forceUpdate();
+          this.setState(state => ({ dimmerMessage: "¡Elección eliminada exitosamente!", dimmerIcon: 'remove circle', active: true }));
         }
       });
     }
@@ -60,10 +82,17 @@ class ShowElection extends Component {
     const { election } = this.props;
     let createAt = new Date(election.createAt);
     let finish_date = new Date(election.finish_date);
+    const { dimmerMessage, dimmerIcon, active, open, updateMembers } = this.state;
 
-    return <Modal closeIcon
+    const listMembers = Meteor.users.find({
+      _id: { $in: election.members }
+    }).fetch().map(member => <MemberListItem key={member._id} member={member} />);
+
+    return <Modal
+      open={open}
+      closeIcon
       trigger={
-        <Table.Row key={election._id} className='pointer'>
+        <Table.Row key={election._id} onClick={this.handleOpen} className='pointer'>
           <Table.Cell>{election.name}</Table.Cell>
           <Table.Cell>{election.status === 'enabled' ? 'Abierto' : 'Cerrado'}</Table.Cell>
           <Table.Cell>
@@ -71,6 +100,7 @@ class ShowElection extends Component {
           </Table.Cell>
         </Table.Row>
       }
+      onClose={this.handleCloseModal}
     >
       <Header>
         Elección {election.name}
@@ -91,7 +121,9 @@ class ShowElection extends Component {
               <Segment vertical>
                 <Grid>
                   <Grid.Row>
-                    <VotationMember handleSelectMember={this.handleSelectMember} election={election} />
+                    <VotationMember
+                      handleSelectMember={this.handleSelectMember}
+                      election={election} />
                     <Button secondary icon labelPosition='right' onClick={this.handleAddMember}>
                       Agregar
                       <Icon name='hand point down outline' />
@@ -99,16 +131,19 @@ class ShowElection extends Component {
                   </Grid.Row>
                 </Grid>
               </Segment>
-              <Segment vertical><MemberList election={election} /></Segment>
             </Grid.Column>
           </Grid>
           <Divider vertical></Divider>
         </Segment>
-        <Dimmer active={this.state.active} onClickOutside={this.handleClose} page>
+        <Dimmer
+          active={active}
+          onClickOutside={this.handleClose}
+          page
+        >
           <Header as='h2' icon inverted>
-            <Icon name='remove circle' />
-            ¡Elección eliminada exitosamente!
-        </Header>
+            <Icon name={dimmerIcon} />
+            {dimmerMessage}
+          </Header>
         </Dimmer>
       </Modal.Content>
       <Modal.Actions>
@@ -121,4 +156,17 @@ class ShowElection extends Component {
   }
 }
 
-export default ShowElection;
+ShowElection.propTypes = {
+  electionsReady: PropTypes.bool.isRequired
+};
+
+export default withTracker(props => {
+  const electionsSub = Meteor.subscribe('Elections.all');
+  const elections = Elections.find();
+  const electionsReady = electionsSub.ready() && !!elections;
+  return {
+    user: Meteor.user(),
+    electionsReady: electionsReady
+  };
+})(ShowElection);
+
