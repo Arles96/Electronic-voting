@@ -5,7 +5,7 @@ import { Table, Container } from 'semantic-ui-react';
 import PropTypes from 'prop-types';
 import Navbar from '../../components/Navbar/Navbar';
 
-import { Elections } from '../../../api/elections/elections'
+import { Elections } from '../../../api/Elections/Elections'
 import './Elections.scss';
 
 class showElections extends React.Component {
@@ -23,7 +23,7 @@ class showElections extends React.Component {
     });
 
     var elec = Elections.find({}).fetch();
-    
+
     this.setState({
       list: elec
     });
@@ -48,7 +48,7 @@ class showElections extends React.Component {
               </Table.Header>
 
               <Table.Body>
-                  { 
+                  {
                     this.state.list.map((val, index)=>{
                         return (
                           <Table.Row key={index}>

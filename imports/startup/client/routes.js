@@ -12,7 +12,6 @@ import Signup from '../../ui/pages/Signup';
 import Profile from '../../ui/pages/Profile';
 import addElections from '../../ui/pages/elections/addElections';
 import showElections from '../../ui/pages/elections/showElections';
-import Polling from '../../ui/pages/Polling';
 import Dashboard from '../../ui/pages/Dashboard';
 import NotFound from '../../ui/pages/Not-Found';
 import RecoverPassword from '../../ui/pages/RecoverPassword';
