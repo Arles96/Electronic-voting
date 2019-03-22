@@ -9,19 +9,22 @@ class ConfirmationEmail extends Component {
         };
     }
     componentWillMount() {
-        /* if (this.props.loggedIn) {
-         }else{
-             return this.props.history.push('/');
-         }*/
-        Meteor.call('updateEmailVerification', this.props.match.params.token, (err, result) => {
-            this.setState({ verificacion: result })
-        })
+        if(Meteor.userId()){
+            Meteor.call('updateEmailVerification', this.props.match.params.token, (err, result) => {
+                this.setState({ verificacion: result })
+            })
+        }else{
 
+        }
     }
 
     render() {
         console.log(this.props)
-        if (this.state.verificacion) {
+        if(!Meteor.userId()){
+            
+        }
+
+        if (this.state.verificacion && Meteor.userId()) {
             return (
                 <div style={{ paddingRight: 2 + "rem" }}>
                     <p style={{ fontSize: '1.33em' }}>
