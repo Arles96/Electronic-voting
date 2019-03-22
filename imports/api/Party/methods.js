@@ -20,7 +20,7 @@ Meteor.methods({
     });
     return done;
   },
-  addMembersParty: function (data) {
+  addPartyMember: function (data) {
     const { party, userId } = data;
     const done = Party.update({ _id: party._id }, {
       $set: {

@@ -24,7 +24,7 @@ const LeftMenuProfile = ({ user, length }) => (
       </Card.Content>
       <Card.Content extra>
         <a>
-          <Icon name='user' />
+          <Icon name='archive' />
           {length} Elecciones
         </a>
       </Card.Content>
@@ -42,7 +42,14 @@ const LeftMenuProfile = ({ user, length }) => (
       </Card.Content>
       <Card.Content>
         <a href="/dashboard">
+          <Icon name='archive' />
           Elecciones
+          </a>
+      </Card.Content>
+      <Card.Content>
+        <a href="/elections">
+          <Icon name='address card' />
+          Planillas
           </a>
       </Card.Content>
     </Card>

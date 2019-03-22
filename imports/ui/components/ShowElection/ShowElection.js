@@ -147,8 +147,6 @@ class ShowElection extends Component {
         </Dimmer>
       </Modal.Content>
       <Modal.Actions>
-        <Button content='Administrar'
-          onClick={this.handleManage} />
         <Button color='red' content='Eliminar'
           onClick={this.handleRemove} />
       </Modal.Actions>
