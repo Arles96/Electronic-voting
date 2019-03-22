@@ -1,5 +1,5 @@
 {
-	"private":{
-		"smtp":"smtp://dm1289:A12b89@56@smtp.sendgrind.net:587"
-	}
+  "private": {
+    "smtp": "smtp://CJAlvarezUnitec:Ps6470351@smtp.sendgrid.net:587"
+  }
 }

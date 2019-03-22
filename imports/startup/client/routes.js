@@ -13,6 +13,7 @@ import Profile from '../../ui/pages/Profile';
 import addElections from '../../ui/pages/elections/addElections';
 import showElections from '../../ui/pages/elections/showElections';
 import Polling from '../../ui/pages/Polling';
+import Dashboard from '../../ui/pages/Dashboard';
 import NotFound from '../../ui/pages/Not-Found';
 import RecoverPassword from '../../ui/pages/RecoverPassword';
 import ResetPassword from '../../ui/pages/ResetPassword';
@@ -35,7 +36,7 @@ const App = props => (
         <PropsRoute path="/elections" component={addElections} {...props} />
         <PropsRoute path="/show-elections" component={showElections} {...props} />
         <PropsRoute path="/votingforms" component={addVotingForms} {...props} />
-        <PropsRoute path="/pollings" component={Polling} {...props} />
+        <PropsRoute path="/dashboard" component={Dashboard} {...props} />
         <PropsRoute exact path="/profile" component={Profile} {...props} />
         <PropsRoute exact path="/profile/:_id" component={Profile} {...props} />
         <PropsRoute
