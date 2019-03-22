@@ -2,6 +2,7 @@ import React from 'react';
 import { Card, Header, Form, Message, Icon, Button } from 'semantic-ui-react';
 import { Meteor } from 'meteor/meteor';
 import UpdateProfileSchema from '../../../api/users/updateProfile';
+import Swal from 'sweetalert2';
 
 import './updateInfoUser.scss';
 
@@ -21,10 +22,13 @@ const campus = [
 class UpdateInfoUser extends React.Component {
 
  /* constructor() {
-
+    this.state = {
+      errProfile: '',
+      errPass: ''
+    }
     this.handleSubmitProfile = this.handleSubmitProfile.bind(this);
     this.handleSubmitPassword = this.handleSubmitPassword.bind(this);
-  }*/
+  } */
 
   handleSubmitProfile (event) {
     const data = {
@@ -35,8 +39,18 @@ class UpdateInfoUser extends React.Component {
     try {
       UpdateProfileSchema.validate(data);
       Meteor.call(`updateProfile`,data);
+      Swal.fire({
+        position: 'top-end',
+        type: 'success',
+        title: 'Se ha actualizado'
+      })
     } catch (error) {
       //this.setState({ errProfile: error.message });
+      Swal.fire({
+        position: 'top-end',
+        type: 'error',
+        title: error.message
+      })
     }
   }
   handleSubmitPassword (event) {
@@ -48,12 +62,24 @@ class UpdateInfoUser extends React.Component {
     try {
       UpdatePasswordSchema.validate(data);
       Meteor.call(`updatePassword`,data);
+      Swal.fire({
+        position: 'top-end',
+        type: 'success',
+        title: 'Se ha actualizado'
+      })
     } catch (error) {
       //this.setState({ errProfile: error.message });
+      Swal.fire({
+        position: 'top-end',
+        type: 'error',
+        title: error.message
+      })
     }
   }
+
   render() {
     //const { errProfile } = this.state;
+    const { user } = this.props;
     return (
       <div id="settingsCard" >
         <Card className="card-info" >
@@ -66,11 +92,11 @@ class UpdateInfoUser extends React.Component {
             {/* errProfile && <Message error content={errProfile} /> */}
             <Form.Field>
               <label>Nombres</label>
-              <input name="firstName" />
+              <input name="firstName" defaultValue={ user && user.profile.firstName } />
             </Form.Field>
             <Form.Field>
               <label>Apellidos</label>
-              <input name="lastName" />
+              <input name="lastName" defaultValue={ user && user.profile.lastName } />
             </Form.Field>
             <Form.Field>
               <label>Campus</label>
