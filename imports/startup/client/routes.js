@@ -23,7 +23,7 @@ import Spinner from '../../ui/components/Spinner';
 // import hoc to pass additional props to routes
 import PropsRoute from '../../ui/pages/PropsRoute';
 import addVotingForms from '../../ui/pages/votingForms/addVotingForms';
-import ConfirmationEmail from '../../ui/pages/ConfirmationEmail';
+import ConfirmationEmail from '../../ui/pages/ConfirmationEmail/ConfirmationEmail';
 
 const App = props => (
   <Router>

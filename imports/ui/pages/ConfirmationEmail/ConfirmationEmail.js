@@ -1,7 +1,7 @@
-import ConfirmationEmail from ".";
+import React, { Component } from 'react';
 
 
-class ElectionPage extends Component {
+class ConfirmationEmail extends Component {
     constructor(props) {
         super(props);
         this.state = {
