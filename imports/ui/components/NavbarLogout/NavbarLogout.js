@@ -44,7 +44,7 @@ class NavBarLogout extends Component {
                 <Menu.Item as='a'>Company</Menu.Item>
                 <Menu.Item as='a'>Careers</Menu.Item>
                 <Menu.Item position='right'>
-                  <AccountDropdown/>
+                  <AccountDropdown {...this.props}/>
                 </Menu.Item>
             </Menu>
       </div>
