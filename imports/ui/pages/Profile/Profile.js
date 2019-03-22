@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { withTracker } from 'meteor/react-meteor-data';
 import NavbarLogout from '../../components/NavbarLogout';
 import { Grid, Image, Card, Icon, Feed} from 'semantic-ui-react';
+import ListElection from '../../components/listElectionCard/listElectionCard';
+import Election from '../../../api/Elections/Elections';
+import Spinner from '../../components/Spinner';
 
 import './Profile.scss';
 
@@ -20,7 +23,7 @@ class Profile extends React.Component {
       <div id="profileHome" >
         <NavbarLogout />
         <Grid container className="profile-page">
-          <Grid.Column width={8}>
+          <Grid.Column width={6}>
               <Card>
                 <Icon.Group className="icon-group-profile"  size='huge'>
                   <Icon name='user' />
@@ -33,17 +36,11 @@ class Profile extends React.Component {
                     <span className='date'>Joined in 2015</span>
                   </Card.Meta>
                   <Card.Description>Matthew is a musician living in Seattle.</Card.Description>
-                    <div className="item-profile" >
-                     <Icon name='briefcase' size='large' /> <p> "Carrera"  </p>
-                   </div>
                    <div className="item-profile" >
-                     <Icon name='home' size='large' /> {user && user.profile.campus}
+                     <Icon name='university' size='large' /> {user && user.profile.campus}
                    </div>
                    <div className="item-profile" >
                      <Icon name='envelope' size='large' /> {user && user.emails[0].address}
-                   </div>
-                   <div className="item-profile" >
-                     <Icon name='mobile alternate' size='large' /> <p> "Celular"  </p>
                    </div>
                 </Card.Content>
                 <Card.Content extra>
@@ -94,8 +91,8 @@ class Profile extends React.Component {
               </Card>
 
             </Grid.Column>
-            <Grid.Column width={8}>
-            <h1> "Bienvenido usuario"  </h1>
+            <Grid.Column width={10}>
+              {this.props.readyElections ? <ListElection list={this.props.elections} /> : <Spinner />}
             </Grid.Column>
         </Grid>
       </div>
@@ -112,9 +109,14 @@ Profile.propTypes = {
 };
 
 export default withTracker(props => {
+  const readyElections = Meteor.subscribe('Elections.once');
+  const elections = Election.find();
+  console.log(elections);
   return {
     user: Meteor.user(),
     loggedIn: props.loggedIn,
-    history: props.history
+    history: props.history,
+    elections: elections,
+    readyElections: readyElections.ready()
   }
 })(Profile);
