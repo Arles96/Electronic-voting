@@ -11,8 +11,7 @@ import { Elections, ElectionsSchema } from './elections'
 
 Meteor.methods({
     insertElection: function(data) {
-        console.log(data)
-        ElectionsSchema.validate(data);
+        // ElectionsSchema.validate(data);
         Elections.insert(data);
     }
 });

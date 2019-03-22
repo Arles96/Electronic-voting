@@ -1,6 +1,6 @@
 import { Meteor } from 'meteor/meteor';
 import React from 'react';
-import { Table } from 'semantic-ui-react';
+import { Table, Container } from 'semantic-ui-react';
 
 import PropTypes from 'prop-types';
 import Navbar from '../../components/Navbar/Navbar';
@@ -36,30 +36,32 @@ class showElections extends React.Component {
     return (
       <div className='Elections-page'>
         <Navbar/>
-        <h1>Elections Page</h1>
-        <Table celled>
-            <Table.Header>
-                <Table.Row>
-                    <Table.HeaderCell>Título</Table.HeaderCell>
-                    <Table.HeaderCell>Descripción</Table.HeaderCell>
-                    <Table.HeaderCell>Tipo</Table.HeaderCell>
-                </Table.Row>
-            </Table.Header>
+        <Container>
+          <h1>Pagina de elecciones</h1>
+          <Table celled>
+              <Table.Header>
+                  <Table.Row>
+                      <Table.HeaderCell>Título</Table.HeaderCell>
+                      <Table.HeaderCell>Descripción</Table.HeaderCell>
+                      <Table.HeaderCell>Tipo</Table.HeaderCell>
+                  </Table.Row>
+              </Table.Header>
 
-            <Table.Body>
-                { 
-                  this.state.list.map((val, index)=>{
-                      return (
-                        <Table.Row key={index}>
-                            <Table.Cell>{val.title}</Table.Cell>
-                            <Table.Cell>{val.description}</Table.Cell>
-                            <Table.Cell>{val.type}</Table.Cell>
-                        </Table.Row>
-                      )
-                  })
-                }
-            </Table.Body>
-        </Table>
+              <Table.Body>
+                  { 
+                    this.state.list.map((val, index)=>{
+                        return (
+                          <Table.Row key={index}>
+                              <Table.Cell>{val.title}</Table.Cell>
+                              <Table.Cell>{val.description}</Table.Cell>
+                              <Table.Cell>{val.type}</Table.Cell>
+                          </Table.Row>
+                        )
+                    })
+                  }
+              </Table.Body>
+          </Table>
+        </Container>
       </div>
     );
   }
