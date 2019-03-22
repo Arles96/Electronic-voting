@@ -1,42 +1,64 @@
+import ElectionPage from '../ElectionPage/ElectionPage';
+import './Dashboard.scss';
+import Elections from '../../../api/Elections/Elections';
+
 import { Meteor } from 'meteor/meteor';
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import { Grid } from 'semantic-ui-react'
-import NavBar from '../../components/Navbar/Navbar';
-import LeftMenu from '../../components/LeftMenu/LeftMenu';
-import ElectionPage from '../ElectionPage/ElectionPage';
-import Home from '../Home/Home';
-import './Dashboard.scss';
+import { withTracker } from 'meteor/react-meteor-data';
+import NavbarLogout from '../../components/NavbarLogout';
+import { Grid } from 'semantic-ui-react';
+import Spinner from '../../components/Spinner';
+import LeftMenuProfile from '../../components/leftMenuProfile/leftMenuProfile';
 
 class Dashboard extends Component {
+  componentWillMount() {
+    if (!Meteor.userId()) {
+      return this.props.history.push('/login');
+    }
+  }
+
   constructor(props) {
     super(props);
     this.state = {
-      activeItem: 'Inicio',
-      timer: 30
     };
-    this.handleItemClick = this.handleItemClick.bind(this);
-    Meteor.subscribe('Elections.all');
   }
 
-  handleItemClick = item => this.setState(state => item);
-
   render() {
-    return <div className="Dashboard-body">
-      <NavBar />
-      <Grid doubling>
-        <Grid.Row >
-          <Grid.Column width={3}>
-            <LeftMenu handleItemClick={this.handleItemClick} />
+    const { user, elections } = this.props;
+    return (
+      <div id="profileHome" >
+        <NavbarLogout />
+        <Grid container className="profile-page">
+          <Grid.Column width={6}>
+            <LeftMenuProfile user={user} length={elections.fetch().length} />
           </Grid.Column>
-          <Grid.Column width={13}>
-            {(this.state.activeItem === 'Inicio' ? <Home /> : '')}
-            {(this.state.activeItem === 'Elecciones' ? <ElectionPage /> : '')}
+          <Grid.Column width={10}>
+            {this.props.readyElections ? <ElectionPage elections={elections} /> : <Spinner />}
           </Grid.Column>
-        </Grid.Row>
-      </Grid>
-    </div >;
+        </Grid>
+      </div>
+    );
   }
 }
 
-export default Dashboard;
+
+Dashboard.propTypes = {
+  loggedIn: PropTypes.bool.isRequired,
+  history: PropTypes.shape({
+    push: PropTypes.func.isRequired,
+  }).isRequired,
+};
+
+export default withTracker(props => {
+  const readyElections = Meteor.subscribe('Elections.all');
+  const elections = Elections.find();
+  return {
+    user: Meteor.user(),
+    loggedIn: props.loggedIn,
+    history: props.history,
+    elections: elections,
+    readyElections: readyElections.ready(),
+    userId: Meteor.userId()
+  }
+})(Dashboard);

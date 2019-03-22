@@ -1,24 +1,19 @@
 import React, { Component } from 'react';
+import { withTracker } from 'meteor/react-meteor-data';
+import PropTypes from 'prop-types';
 import { Table, Menu, Icon } from 'semantic-ui-react'
 import Elections from '../../../api/Elections/Elections';
-import ShowElection from '../ShowElection/ShowElection';
 import './ElectionTable.scss';
 
 class ElectionTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listElections: Elections.find({}, {
-        sort: { createAt: -1 },
-        skip: props.tablePage * props.limit,
-        limit: props.limit
-      }).fetch().map(election => <ShowElection key={election._id} election={election} />)
     };
   }
 
   render() {
-    const { listElections } = this.state;
-    const { electionCount, limit, tablePage, handleMinusTablePage, handlePlusTablePage } = this.props;
+    const { listElections, electionCount, limit, tablePage, handleMinusTablePage, handlePlusTablePage } = this.props;
 
     if (electionCount > 0) {
       return <Table unstackable celled fixed compact selectable>
@@ -57,4 +52,17 @@ class ElectionTable extends Component {
   }
 }
 
-export default ElectionTable;
+
+ElectionTable.propTypes = {
+  electionsReady: PropTypes.bool.isRequired
+};
+
+export default withTracker(props => {
+  const electionsSub = Meteor.subscribe('Elections.all');
+  const elections = Elections.find();
+  const electionsReady = electionsSub.ready() && !!elections;
+  return {
+    user: Meteor.user(),
+    electionsReady: electionsReady
+  };
+})(ElectionTable);

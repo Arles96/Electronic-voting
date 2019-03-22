@@ -7,9 +7,9 @@ import {
   Menu
 } from 'semantic-ui-react'
 import $ from 'jquery'
-class NavBarLogout extends Component {  
+class NavBarLogout extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
     this.scrollToBottom.bind(this);
   }
@@ -20,9 +20,20 @@ class NavBarLogout extends Component {
   scrollToBottom() {
     $("el").scrollIntoView({ behavior: 'smooth' });
   }
+  enviar(){
+    const tiempo = new Date();
+    tiempo.setDate(tiempo.getDate()+1);
+    const data = {
+      creationtime: new Date(),
+      activo: true,
+      dyingtime: tiempo,
+    }
+    Meteor.call('ConfirmationEmail',data);
+  }
   render() {
-    const { activeItem } = this.state
-    const { fixed } = this.state
+    const { activeItem } = this.state;
+    const { fixed } = this.state;
+
     return (
       <div>
             <Menu
@@ -40,16 +51,12 @@ class NavBarLogout extends Component {
                   onClick={this.handleItemClick}
                   active
                 >Home</Menu.Item>
-                <Menu.Item as='a' onClick={this.scrollToBottom} >Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'>Careers</Menu.Item>
                 <Menu.Item position='right'>
                   <AccountDropdown {...this.props}/>
                 </Menu.Item>
             </Menu>
       </div>
-
-    )
+    );
   }
 }
 

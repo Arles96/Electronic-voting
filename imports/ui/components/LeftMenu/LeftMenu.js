@@ -32,11 +32,6 @@ class LeftMenu extends Component {
           active={activeItem === 'Elecciones'}
           onClick={this.handleItemClick}
         />
-        <Menu.Item
-          name='friends'
-          active={activeItem === 'friends'}
-          onClick={this.handleItemClick}
-        />
       </Menu>
     )
   }

@@ -5,9 +5,11 @@
 
 // users api
 import '../../api/users/publications.js';
+import '../../api/users/methods';
 import '../../api/votingforms/methods';
 import '../../api/Elections/publications';
 import '../../api/Elections/methods';
+import '../../api/emailverification/methods';
 import '../../api/Party/methods';
 import '../../api/Party/publications';
 

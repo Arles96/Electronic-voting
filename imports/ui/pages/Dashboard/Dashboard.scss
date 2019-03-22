@@ -1,10 +1,18 @@
-.Dashboard-body {
-  background: #ededed;
-  width: 100vw;
-  height: 100vh;
-}
+#profileHome {
+  background: #F7F6F6;
 
-.Dashboard-body > .grid {
-  margin-top: 1rem;
-  min-width: 100%;
+  .item-profile {
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+  }
+
+  .profile-page {
+    margin-top: 20px;
+  }
+
+  .icon-group-profile {
+    text-align: center;
+    padding: 1rem;
+  }
+
 }

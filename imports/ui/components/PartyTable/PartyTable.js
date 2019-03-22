@@ -8,12 +8,11 @@ class PartyTable extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      listParty:props.party.fetch().map(party => <ShowParty key={party._id} party={party} />)
     };
   }
 
   render() {
-    const { listParty } = this.state;
+    const listParty = this.props.party.fetch().map(party => <ShowParty key={party._id} party={party} />)
     const { partyCount, limit, tablePage, handleMinusTablePage, handlePlusTablePage } = this.props;
 
     if (partyCount > 0) {
@@ -24,27 +23,9 @@ class PartyTable extends Component {
             <Table.HeaderCell>Lema</Table.HeaderCell>
           </Table.Row>
         </Table.Header>
-
         <Table.Body>
           {listParty}
         </Table.Body>
-        {Math.floor(partyCount / limit) > 0 ?
-          <Table.Footer>
-            <Table.Row>
-              <Table.HeaderCell colSpan='3'>
-                <Menu floated='right' pagination>
-                  {tablePage > 0 ?
-                    < Menu.Item as='a' icon onClick={handleMinusTablePage}>
-                      <Icon name='chevron left' />
-                    </Menu.Item> : null}
-                  {tablePage < Math.floor(partyCount / limit) ?
-                    < Menu.Item as='a' icon onClick={handlePlusTablePage}>
-                      <Icon name='chevron right' />
-                    </Menu.Item> : null}
-                </Menu>
-              </Table.HeaderCell>
-            </Table.Row>
-          </Table.Footer> : null}
       </Table>;
     } else {
       return <h4>No hay planillas</h4>;

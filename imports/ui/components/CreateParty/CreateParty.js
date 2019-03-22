@@ -31,6 +31,7 @@ class CreateParty extends Component {
         this.setState(() => ({ active: true }));
       }
     });
+    window.location.reload();
   }
 
   handleClose = () => this.setState(() => ({ active: false, open: false }));

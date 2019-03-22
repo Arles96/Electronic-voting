@@ -5,6 +5,9 @@ import Elections from './Elections'
 
 Meteor.methods({
   insertElection: function (data) {
+    if (new Date() > new Date(data.finish_date)) {
+      throw new Meteor.Error('Fecha Inválida');
+    }
     const done = Elections.insert({
       idCreator: data.creator, //  Creator Id
       name: data.name, // Name
@@ -22,7 +25,7 @@ Meteor.methods({
     });
     return done;
   },
-  addMembersElection: function (data) {
+  addElectionMember: function (data) {
     const { election, userId } = data;
     const done = Elections.update({ _id: election._id }, {
       $set: {
@@ -36,5 +39,20 @@ Meteor.methods({
       }
     });
     return done;
-  }
+  },
+  removeElectionMember: function (data) {
+    const { election, userId } = data;
+    const done = Elections.update({ _id: election._id }, {
+      $set: {
+        idCreator: election.creator,
+        name: election.name,
+        members: election.members.concat([userId]),
+        finish_date: election.finish_date,
+        voted: election.voted,
+        status: election.status,
+        createAt: election.createAt
+      }
+    });
+    return done;
+  } 
 });
