@@ -10,6 +10,7 @@ Meteor.methods({
             userid: Meteor.userId(),
             creationtime: data.creationtime,
             activo: data.activo,
+            electionid: data.electionid,
             dyingtime: data.dyingtime,
         })
         const url = Meteor.absoluteUrl(`ConfirmationEmail/${token}`);
@@ -19,5 +20,14 @@ Meteor.methods({
             subject: "Subject",
             text: `Here is some text ${url}`
         });
+    },
+    updateEmailVerification: function(_id){
+        const temp = EmailVerification.findOne({ _id});
+        if(temp){
+            EmailVerification.remove({_id});
+            return true;
+        }else{
+            return false;
+        }
     }
 });

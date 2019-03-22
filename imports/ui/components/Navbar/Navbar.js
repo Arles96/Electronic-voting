@@ -28,7 +28,6 @@ class NavBar extends Component {
               fixed={fixed ? 'top' : null}
               inverted={!fixed}
               pointing={!fixed}
-              secondary={!fixed}
               size='large'
               id="HomepageHeading"
             >
@@ -36,38 +35,14 @@ class NavBar extends Component {
                   as={Link} to='/'
                   name='Página Principal'
                   active={activeItem === 'home'}
+                  color = 'orange'
                   onClick={this.handleItemClick}
                   active
                 >Home</Menu.Item>
                 <Menu.Item as='a' onClick={this.scrollToBottom} >Work</Menu.Item>
-                <Menu.Item as='a'>Company</Menu.Item>
-                <Menu.Item as='a'>Careers</Menu.Item>
-                <Menu.Item as='a'>
-                  <Button
-                    name='Elecciones'
-                    as={Link}
-                    to='/elections'
-                    active={activeItem === 'messages'}
-                    onClick={this.handleItemClick}
-                    inverted={!fixed}
-                  >
-                    Elections
-                  </Button>
-                </Menu.Item>
-                <Menu.Item as='a'>
-                  <Button
-                    name='Mostrar elecciones'
-                    as={Link}
-                    to='/show-elections'
-                    active={activeItem === 'messages'}
-                    onClick={this.handleItemClick}
-                    inverted={!fixed}
-                  >
-                    Mostrar Elections
-                  </Button>
-                </Menu.Item>
                 <Menu.Item position='right'>
                   <Button
+                  color = 'orange'
                   name='Iniciar Sesión'
                   as={Link}
                   to='/login'
@@ -78,6 +53,7 @@ class NavBar extends Component {
                     Log in
                   </Button>
                   <Button
+                  color = 'orange'
                     as={Link}
                     to='/signup'
                     name='Registrarse'

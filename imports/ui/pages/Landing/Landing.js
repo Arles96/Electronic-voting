@@ -92,7 +92,7 @@ const HomepageHeading = ({ mobile }) => (
         marginTop: mobile ? '0.5em' : '1.5em',
       }}
     />
-    <Button  as={Link} to={"/signup"}  primary size='huge'>
+    <Button color = 'orange' as={Link} to={"/signup"} size='huge'>
       Get Started
       <Icon name='right arrow' />
     </Button>
@@ -206,12 +206,12 @@ const HomepageLayout = () => (
             </p>
           </Grid.Column>
           <Grid.Column floated='right' width={6}>
-            <Image bordered rounded size='large' src='/images/wireframe/white-image.png' />
+            <Image bordered rounded size='large' src='/f2.jpg' />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign='center'>
-            <Button size='huge'>Check Them Out</Button>
+            <Button color = 'orange' size='huge'>Check Them Out</Button>
           </Grid.Column>
         </Grid.Row>
       </Grid>
@@ -230,7 +230,7 @@ const HomepageLayout = () => (
               "I shouldn't have gone with their competitor."
             </Header>
             <p style={{ fontSize: '1.33em' }}>
-              <Image avatar src='/images/avatar/large/nan.jpg' />
+              <Image rounded size='medium' centered src='/f1.jpg' />
               <b>Nan</b> Chief Fun Officer Acme Toys
             </p>
           </Grid.Column>
@@ -247,7 +247,7 @@ const HomepageLayout = () => (
           art of doing nothing by providing massive amounts of whitespace and generic content that
           can seem massive, monolithic and worth your attention.
         </p>
-        <Button as='a' size='large'>
+        <Button color = 'orange' as='a' size='large'>
           Read More
         </Button>
         <Divider
@@ -266,7 +266,7 @@ const HomepageLayout = () => (
           it's really true. It took years of gene splicing and combinatory DNA research, but our
           bananas can really dance.
         </p>
-        <Button  as='a' size='large'>
+        <Button color = 'orange'  as='a' size='large'>
           I'm Still Quite Interested
         </Button>
       </Container>
