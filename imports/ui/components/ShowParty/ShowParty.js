@@ -41,14 +41,12 @@ class ShowParty extends Component {
   handleSelectMember = userId => this.setState(state => ({ userId: userId }));
 
   handleAddMember() {
-    
+    window.location.reload();
     const data = {
       party: this.props.party,
       userId: this.state.userId
     }
 
-
-    console.log(data)
     Meteor.call('addPartyMember', data, (error, result) => {
       if (error) {
         alert(error.error);
@@ -62,6 +60,7 @@ class ShowParty extends Component {
   handleSelectElection = electionId => this.setState(state => ({ electionId: electionId }));
 
   handleAddElection() {
+    window.location.reload();
     const data = {
       party: this.props.party,
       electionId: this.state.electionId
