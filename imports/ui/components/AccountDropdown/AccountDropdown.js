@@ -29,10 +29,9 @@ class AccountDropdown extends Component {
     )
 
     const options = [
-      { key: 'user', text: 'Account', icon: 'user' },
-      { hey: 'dashboard', text: 'dashboard', icon: 'dashboard', onClick: () => this.redirect('/dashboard') },
-      { key: 'settings', text: 'Settings', icon: 'settings', onClick: () => this.redirect('/settings') },
-      { key: 'sign-out', text: 'Sign Out', icon: 'sign out', onClick: () => this.logout() },
+      { key: 'user', text: 'Perfil', icon: 'user', onClick: () => this.redirect('/profile')},
+      { hey: 'dashboard', text: 'Elecciones', icon: 'dashboard', onClick: () => this.redirect('/dashboard') },
+      { key: 'sign-out', text: 'Cerrar sesión', icon: 'sign out', onClick: () => this.logout() },
     ]
     return (
       <Dropdown trigger={trigger} options={options} pointing='top left' icon='user circle' />
