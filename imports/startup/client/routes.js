@@ -46,7 +46,7 @@ const App = props => (
         />
         <PropsRoute
           exact
-          path="/recover-password/:token"
+          path="/reset-password/:token"
           component={RecoverPassword}
           {...props}
         />
